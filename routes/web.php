@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AccessController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\SetController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,4 +60,29 @@ Route::get('/withdraw/vat/set', [WithdrawController::class, 'withdraw_vat_set'])
 // news route start
 Route::get('/update/news', [NewsController::class, 'update_news'])->name('update.news'); 
 Route::get('/news/promotion', [NewsController::class, 'news_promotion'])->name('news.promotion'); 
+Route::get('/fake/news', [NewsController::class, 'fake_news'])->name('fake.news');
 // news route end
+
+// set route start
+Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set'); 
+Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
+Route::get('/transfer/vat/set', [SetController::class, 'transfer_vat_set'])->name('transfer.vat.set');
+Route::get('/withdraw/vat/set', [SetController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
+Route::get('/matching/bonus/set', [SetController::class, 'matching_bonus_set'])->name('matching.bonus.set');
+// set route end
+
+// tree soute start
+Route::get('/tree/hide/show', [TreeController::class, 'tree_hide_show'])->name('tree.hide.show');
+// tree soute end
+
+
+// access route start
+Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access'); 
+Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])->name('user.bkash.access');
+// access route end
+
+
+// settings route start
+Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting'); 
+Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
+// settings route end

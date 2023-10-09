@@ -201,7 +201,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/forms/general.html" class="nav-link">
+                            <a href="{{ route('fake.news') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Fake News</p>
                             </a>
@@ -218,31 +218,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('daily.bonus.set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daily Bonus Set</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('reference.bonus.set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reference Bonus Set</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('withdraw.vat.set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Withdraw Vat Set</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('transfer.vat.set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Transfer Vat Set</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('matching.bonus.set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Matching Bonus Set</p>
                             </a>
@@ -259,7 +259,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('tree.hide.show') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tree Hide/Show</p>
                             </a>
@@ -276,15 +276,38 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('user.tree.access') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User Tree Access</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
+                            <a href="{{ route('user.bkash.access') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User Bkash Access</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Settings
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('account.setting') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Account Setting</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('password.change') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Change Password</p>
                             </a>
                         </li>
                     </ul>
