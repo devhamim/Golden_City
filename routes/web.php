@@ -9,9 +9,11 @@ use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
+use App\Http\Controllers\User\BalanceController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\PackageController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -108,3 +110,17 @@ Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->
 // package route start
 Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package'); 
 // package route end
+
+// balance route start
+Route::get('/balance/transfer', [BalanceController::class, 'balance_transfer'])->name('balance.transfer'); 
+// balance route end
+
+// route for user start
+Route::get('/user/info', [UserController::class, 'user_info'])->name('user.info');
+Route::get('/account/verified', [UserController::class, 'account_verified'])->name('account.verified');
+Route::get('/upgrade/account', [UserController::class, 'upgrade_account'])->name('upgrade.account');
+Route::get('/pin/code', [UserController::class, 'pin_code'])->name('pin.code');
+Route::get('/password/change', [UserController::class, 'password_change'])->name('password.change');
+Route::get('/user/profile', [UserController::class, 'user_profile'])->name('user.profile');
+Route::get('/edit/user/profile', [UserController::class, 'edit_user_profile'])->name('edit.user.profile');
+// route for user end

@@ -7,23 +7,21 @@
                 <a href="" class="h1"><b>Admin</b>LTE</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign up to start your session</p>
+                <p class="login-box-msg">Sign in to start your session</p>
 
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name') }}" placeholder="User Name" required autocomplete="name"
-                            autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+                    <div class="row mb-3">
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -55,12 +53,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                    <div class="row mb-3">
+                        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
                     <div class="row">
@@ -74,7 +71,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -89,10 +86,10 @@
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
-                    <a href="forgot-password.html"></a>
+                    <a href="forgot-password.html">I forgot my password</a>
                 </p>
                 <p class="mb-0">
-                    <a href="{{ route('login') }}" class="text-center">Sign In</a>
+                    <a href="register.html" class="text-center">Register a new membership</a>
                 </p>
             </div>
             <!-- /.card-body -->

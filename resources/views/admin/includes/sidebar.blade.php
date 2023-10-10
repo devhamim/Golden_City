@@ -383,7 +383,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('balance.transfer') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Balance Transfer</p>
                             </a>
@@ -400,43 +400,43 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('user.info') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Personal Info</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('account.verified') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Account Verified</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('upgrade.account') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Upgrade Account</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('pin.code') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pin Code</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('password.change') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Change Password</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('user.profile') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Profile</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('edit.user.profile') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Edit Profile</p>
                             </a>
