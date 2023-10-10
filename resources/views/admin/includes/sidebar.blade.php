@@ -314,7 +314,7 @@
                 </li>
                 <li class="nav-header bg-secondary">USER</li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('user.dashboard') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Dashboard
@@ -332,7 +332,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
+                            <a href="{{ route('user.deposit') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Deposit</p>
                             </a>
@@ -349,7 +349,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/examples/invoice.html" class="nav-link">
+                            <a href="{{ route('user.withdraw') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Withdraw</p>
                             </a>
@@ -366,7 +366,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="starter.html" class="nav-link">
+                            <a href="{{ route('active.package') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Active Package</p>
                             </a>

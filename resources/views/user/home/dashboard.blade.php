@@ -7,8 +7,8 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Total Deposit</h3>
-                    <h3>40,084,515.00 ৳</h3>
+                    <h4>Current Balance </h4>
+                    <h4>1393929.0051 ৳</h4>
                 </div>
             </div>
         </div>
@@ -16,8 +16,8 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h4>Total Deposit</h4>
-                    <h4>40,084,515.00 ৳</h4>
+                    <h4>Repeat Money</h4>
+                    <h4>1307294.60255 ৳ </h4>
                 </div>
             </div>
         </div>
@@ -26,8 +26,8 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h4>Total Withdraw</h4>
-                    <h4>4,875,955.88 ৳</h4>
+                    <h4>Profit Money</h4>
+                    <h4>83453.402550001 ৳</h4>
                 </div>
             </div>
         </div>
@@ -36,25 +36,28 @@
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h4>Total Withdraw Commission</h4>
-                    <h4>319,277.76 ৳</h4>
+                    <h4>Total Bonus </h4>
+                    <h4>393919.0051 ৳</h4>
                 </div>
             </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6 text-center">
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
-
-                    <p>Unique Visitors</p>
+                    <h4>Total Deposit</h4>
+                    <h4>202010 ৳</h4>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+            </div>
+        </div>
+        <div class="col-lg-4 col-6 text-center">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h4>Total Transaction</h4>
+                    <h4>202000 ৳</h4>
                 </div>
-                <a href="#" class="small-box-footer">More info <i
-                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->

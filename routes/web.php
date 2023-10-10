@@ -9,6 +9,10 @@ use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
+use App\Http\Controllers\User\DepositController as UserDepositController;
+use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\User\PackageController;
+use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -86,3 +90,21 @@ Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])
 Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting'); 
 Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
 // settings route end
+
+
+
+// user all route *****
+
+Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
+
+// deposit route start
+Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
+// deposit route end
+
+// withdraw route start
+Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw'); 
+// withdraw route end
+
+// package route start
+Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package'); 
+// package route end
