@@ -9,7 +9,7 @@
             <div class="card-body">
                 <p class="login-box-msg">Sign up to start your session</p>
 
-                <form method="POST" action="">
+                <form method="POST" action="{{ url('/user/stores') }}">
                     @csrf
                     <div class="input-group mb-3">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -56,7 +56,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                            required autocomplete="new-password" placeholder="Confirm Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\User\BalanceController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
@@ -110,3 +111,8 @@ Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->
 // package route start
 Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
 // package route end
+
+
+
+//Registation
+Route::post('/user/stores', [RegisterController::class, 'store']);
