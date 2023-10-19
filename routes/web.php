@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
 // member route start
 Route::get('/member/add', [MemberController::class, 'add_member'])->name('add.member');
