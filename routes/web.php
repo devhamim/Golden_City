@@ -102,6 +102,7 @@ Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->na
 
 // deposit route start
 Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
+Route::post('/user/deposit/request', [UserDepositController::class, 'deposit_request'])->name('user.deposit.request');
 // deposit route end
 
 // withdraw route start

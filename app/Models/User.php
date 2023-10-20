@@ -42,4 +42,63 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function totalDownlineCount($side = null) // Count Downline child
+    {
+        if ($side === 'left') {
+            return $this->countDownline($this->left_child_id);
+        } elseif ($side === 'right') {
+            return $this->countDownline($this->right_child_id);
+        } else {
+            $leftCount = $this->countDownline($this->left_child_id);
+            $rightCount = $this->countDownline($this->right_child_id);
+            return [
+                'left' => $leftCount,
+                'right' => $rightCount,
+            ];
+        }
+    }
+
+    private function countDownline($childId) //Private Nest
+    {
+        if ($childId === null) {
+            return 0;
+        }
+        $child = User::find($childId);
+        if ($child === null) {
+            return 0;
+        }
+        $leftCount = $child->countDownline($child->left_child_id);
+        $rightCount = $child->countDownline($child->right_child_id);
+        return $leftCount + $rightCount + 1;
+    }
+
+    public function lastUserInDownline($side = null) // Getting Last User Full Data
+    {
+        if ($side === 'left') {
+            return $this->findLastUser($this->left_child_id);
+        } elseif ($side === 'right') {
+            return $this->findLastUser($this->right_child_id);
+        } else {
+            $leftLast = $this->findLastUser($this->left_child_id);
+            $rightLast = $this->findLastUser($this->right_child_id);
+            return [
+                'left' => $leftLast,
+                'right' => $rightLast,
+            ];
+        }
+    }
+
+    private function findLastUser($childId) //Private Nest
+    {
+        if ($childId === null) {
+            return $this;
+        }
+        $child = User::find($childId);
+        if ($child === null) {
+            return $this;
+        }
+
+        return $child->findLastUser($child->right_child_id);
+    }
 }
