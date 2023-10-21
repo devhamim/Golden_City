@@ -16,13 +16,13 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Reference bonus set</h3>
+                        <h3 class="card-title">Generation set</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('reference.bonus.set.update') }}" method="POST">
+                    <form action="{{ route('generation.set.update') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="reference_bonus_set_id" value="{{ $reference_bonus_set->id }}">
+                        <input type="hidden" name="generation_set_id" value="{{ $generation_set->id }}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -30,7 +30,7 @@
                                         <label for="exampleInputEmail1">Bonus (%)<strong
                                                 class="text-danger">*</strong></label>
                                         <input type="text" class="form-control" id="exampleInputEmail1"
-                                            value="{{ $reference_bonus_set->bonus }}" name="bonus"
+                                            value="{{ $generation_set->bonus }}" name="bonus"
                                             placeholder="Only integer">
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                         <label for="exampleInputEmail1">C wallet (%)<strong
                                                 class="text-danger">*</strong></label>
                                         <input type="text" class="form-control" id="exampleInputEmail1"
-                                            value="{{ $reference_bonus_set->c_wallet }}" name="c_wallet"
+                                            value="{{ $generation_set->c_wallet }}" name="c_wallet"
                                             placeholder="Only integer">
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                         <label for="exampleInputEmail1">R wallet (%)<strong
                                                 class="text-danger">*</strong></label>
                                         <input type="text" class="form-control" id="exampleInputEmail1"
-                                            value="{{ $reference_bonus_set->r_wallet }}" name="r_wallet"
+                                            value="{{ $generation_set->r_wallet }}" name="r_wallet"
                                             placeholder="Only integer">
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                         <label for="exampleInputEmail1">S wallet (%)<strong
                                                 class="text-danger">*</strong></label>
                                         <input type="text" class="form-control" id="exampleInputEmail1"
-                                            value="{{ $reference_bonus_set->s_wallet }}" name="s_wallet"
+                                            value="{{ $generation_set->s_wallet }}" name="s_wallet"
                                             placeholder="Only integer">
                                     </div>
                                 </div>
