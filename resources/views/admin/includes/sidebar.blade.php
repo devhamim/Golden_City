@@ -232,6 +232,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('generation.set') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Generation Set</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('withdraw.vat.set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Withdraw Vat Set</p>
