@@ -50,6 +50,7 @@ Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('me
 // deposit route start
 Route::get('/admin/deposit', [DepositController::class, 'admin_deposit'])->name('admin.deposit');
 Route::get('/deposite/request', [DepositController::class, 'deposite_request'])->name('deposite.request');
+Route::post('/deposite/request/status', [DepositController::class, 'deposite_request_status'])->name('deposite.request.status');
 Route::get('/deposite/reject', [DepositController::class, 'deposite_reject'])->name('deposite.reject');
 // deposit route end
 

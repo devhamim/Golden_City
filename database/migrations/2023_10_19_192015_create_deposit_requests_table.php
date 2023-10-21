@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('amount');
             $table->enum('status', ['pending', 'confirm', 'cancel']);
             $table->string('transaction_number');
+            $table->longText('comment')->nullable();
             $table->timestamps();
         });
     }

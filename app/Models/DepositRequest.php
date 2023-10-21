@@ -9,6 +9,11 @@ class DepositRequest extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'status',
+        'comment',
+    ];
+
     function user()
     {
         return $this->belongsTo(User::class);

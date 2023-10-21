@@ -1,3 +1,16 @@
+@php
+    // $cc = Auth::check() ? Auth::user()->fName . ' ' . Auth::user()->id : '';
+    use App\Models\Wallet;
+    $wallets = Wallet::where('receiver_id', Auth::user()->id)
+        ->orWhere('sender_id', Auth::user()->id)
+        ->get();
+    $balance = 0;
+    foreach ($wallets as $wallet) {
+        $balance += $wallet->balance;
+    }
+
+@endphp
+
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -18,8 +31,8 @@
 
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link">
-                0.00
+            <a class="nav-link" style="color: #000000e8;font-weight: bold">
+                ${{ number_format($balance, 1) }}
             </a>
 
         </li>
