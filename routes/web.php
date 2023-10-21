@@ -9,9 +9,12 @@ use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\User\BalanceController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\PackageController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
 use App\Models\Admin\DailyBonusSet;
 use Illuminate\Support\Facades\Auth;
@@ -28,22 +31,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
-// member route start 
+// member route start
 Route::get('/member/add', [MemberController::class, 'add_member'])->name('add.member');
 Route::get('/member/packge/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
 Route::get('/banned/member', [MemberController::class, 'banned_member'])->name('banned.member');
 Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
 Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('member.bonus');
-// member route end 
+// member route end
 
 // deposit route start
 Route::get('/admin/deposit', [DepositController::class, 'admin_deposit'])->name('admin.deposit');
@@ -51,7 +54,7 @@ Route::get('/deposite/request', [DepositController::class, 'deposite_request'])-
 Route::get('/deposite/reject', [DepositController::class, 'deposite_reject'])->name('deposite.reject');
 // deposit route end
 
-// withdraw route start 
+// withdraw route start
 Route::get('/admin/withdraw', [WithdrawController::class, 'admin_withdraw'])->name('admin.withdraw');
 Route::get('/admin/withdraw/request', [WithdrawController::class, 'admin_withdraw_request'])->name('admin.withdraw.request');
 Route::get('/admin/withdraw/commission', [WithdrawController::class, 'admin_withdraw_commission'])->name('admin.withdraw.commission');
@@ -63,8 +66,8 @@ Route::get('/withdraw/vat/set', [WithdrawController::class, 'withdraw_vat_set'])
 
 
 // news route start
-Route::get('/update/news', [NewsController::class, 'update_news'])->name('update.news'); 
-Route::get('/news/promotion', [NewsController::class, 'news_promotion'])->name('news.promotion'); 
+Route::get('/update/news', [NewsController::class, 'update_news'])->name('update.news');
+Route::get('/news/promotion', [NewsController::class, 'news_promotion'])->name('news.promotion');
 Route::get('/fake/news', [NewsController::class, 'fake_news'])->name('fake.news');
 // news route end
 
@@ -72,6 +75,7 @@ Route::get('/fake/news', [NewsController::class, 'fake_news'])->name('fake.news'
 Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set'); 
 Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
 
+Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
 Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
 Route::post('/reference/bonus/set/update', [SetController::class, 'reference_bonus_set_update'])->name('reference.bonus.set.update');
 
@@ -92,13 +96,13 @@ Route::get('/tree/hide/show', [TreeController::class, 'tree_hide_show'])->name('
 
 
 // access route start
-Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access'); 
+Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
 Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])->name('user.bkash.access');
 // access route end
 
 
 // settings route start
-Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting'); 
+Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting');
 Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
 // settings route end
 
@@ -110,14 +114,22 @@ Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->na
 
 // deposit route start
 Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
+Route::post('/user/deposit/request', [UserDepositController::class, 'deposit_request'])->name('user.deposit.request');
 // deposit route end
 
 // withdraw route start
-Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw'); 
+Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw');
 // withdraw route end
 
 // package route start
+
 Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package'); 
 // package route end
 
+Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
+// package route end
+
+
+//Registation
+Route::post('/user/stores', [RegisterController::class, 'store']);
 

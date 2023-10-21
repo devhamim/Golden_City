@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\DepositRequest;
+
 
 class DepositController extends Controller
 {
@@ -11,13 +12,19 @@ class DepositController extends Controller
     {
         $this->middleware('auth');
     }
-    function admin_deposit(){
+    function admin_deposit()
+    {
         return view('admin.deposit.admin_deposit');
     }
-    function deposite_request(){
-        return view('admin.deposit.deposite_request');
+    function deposite_request()
+    {
+        $request = DepositRequest::all();
+        return view('admin.deposit.deposite_request', [
+            'requests' => $request,
+        ]);
     }
-    function deposite_reject(){
+    function deposite_reject()
+    {
         return view('admin.deposit.deposite_reject');
     }
 }
