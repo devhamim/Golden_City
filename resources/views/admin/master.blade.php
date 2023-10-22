@@ -28,6 +28,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend') }}/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/toastr/toastr.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css">
@@ -116,6 +117,7 @@
     <!-- overlayScrollbars -->
     <script src="{{ asset('backend') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
+    <script src="{{ asset('backend') }}/plugins/toastr/toastr.min.js"></script>
     <script src="{{ asset('backend') }}/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('backend') }}/dist/js/demo.js"></script>

@@ -1,9 +1,7 @@
 @php
     // $cc = Auth::check() ? Auth::user()->fName . ' ' . Auth::user()->id : '';
     use App\Models\Wallet;
-    $wallets = Wallet::where('receiver_id', Auth::user()->id)
-        ->orWhere('sender_id', Auth::user()->id)
-        ->get();
+    $wallets = Wallet::where('receiver_id', Auth::user()->id)->get();
     $balance = 0;
     foreach ($wallets as $wallet) {
         $balance += $wallet->balance;

@@ -10,30 +10,13 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\User\BalanceController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\PackageController;
-use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
-use App\Models\Admin\DailyBonusSet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Auth::routes();
 
@@ -73,7 +56,7 @@ Route::get('/fake/news', [NewsController::class, 'fake_news'])->name('fake.news'
 // news route end
 
 // set route start
-Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set'); 
+Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
 Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
 
 Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
@@ -112,6 +95,7 @@ Route::get('/password/change', [SettingController::class, 'password_change'])->n
 // user all route *****
 
 Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
+Route::post('/user/transfer/request', [UserWithdrawController::class, 'transfer_request'])->name('user.transfer.request');
 
 // deposit route start
 Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
@@ -124,13 +108,12 @@ Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->
 
 // package route start
 
-Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package'); 
+Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
 // package route end
 
-Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
+Route::get('/package/create', [PackageController::class, 'link'])->name('active.package');
 // package route end
 
 
 //Registation
 Route::post('/user/stores', [RegisterController::class, 'store']);
-

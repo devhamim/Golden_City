@@ -25,10 +25,10 @@ class SetController extends Controller
             return 'Max wallet value is 100%';
         } else {
             $validated = $request->validate([
-                'bonus' => 'required|max:99|numeric',
-                'c_wallet' => 'numeric',
-                'r_wallet' => 'numeric',
-                's_wallet' => 'numeric',
+                'bonus'     => 'required|max:99|numeric',
+                'c_wallet'  => 'numeric',
+                'r_wallet'  => 'numeric',
+                's_wallet'  => 'numeric',
             ]);
             DailyBonusSet::where('id', $request->daily_bonus_set_id)->update([
                 'bonus' => $request->bonus,

@@ -90,10 +90,12 @@
                                         <td>{{ $request->amount }}</td>
                                         <td> <span class="badge bg-warning">{{ $request->status }}
                                             </span></td>
-                                        <td><button type="button" class="btn btn-info action_button" data-toggle="modal"
+                                        <td>
+                                            <button type="button" class="btn btn-info action_button" data-toggle="modal"
                                                 data-target="#modal-default">
                                                 Action
-                                            </button></td>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @empty
                                 @endforelse
@@ -111,21 +113,14 @@
 @endsection
 @section('script')
     <script>
-        console.log('running console');
         $(document).ready(function() {
             $(".action_button").on("click", function() {
-                console.log('console click');
                 var row = $(this).closest("tr");
 
                 var id = row.find("td:eq(0)").text();
                 var user_id = row.find("td:eq(1)").text();
                 var username = row.find("td:eq(3)").text();
                 var amount = row.find("td:eq(7)").text();
-
-
-                console.log("id: " + id);
-                console.log("UserName: " + username);
-                console.log("amount: " + amount);
 
                 $("input[name='id']").val(id);
                 $("input[name='user_id']").val(user_id);
