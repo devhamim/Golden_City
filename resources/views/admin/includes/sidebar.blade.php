@@ -374,6 +374,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('user.package.list') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Packacge</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('active.package') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Active Package</p>

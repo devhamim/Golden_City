@@ -1,10 +1,9 @@
 @extends('admin.master')
 
 @php
-
-    $credit = isset($balance['credit']) ? number_format($balance['credit'], 1) : 0.0;
-    $refferal = isset($balance['refferal']) ? number_format($balance['refferal'], 1) : 0.0;
-    $shopping = isset($balance['shopping']) ? number_format($balance['shopping'], 1) : 0.0;
+    $credit = isset($balance['credit']) ? $balance['credit'] : 0.0;
+    $refferal = isset($balance['refferal']) ? $balance['refferal'] : 0.0;
+    $shopping = isset($balance['shopping']) ? $balance['shopping'] : 0.0;
 
     $totalBalance = $credit + $refferal + $shopping;
 @endphp
@@ -66,7 +65,7 @@
                 <!-- MAP & BOX PANE -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Hello {{ Auth::user()->fName . ' ' . Auth::user()->lName }}</h3>
+                        <h3 class="card-title">Hello {{ Auth::user()->username }}</h3>
 
                     </div>
                     <!-- /.card-header -->
@@ -86,15 +85,11 @@
                 <!-- TABLE: LATEST ORDERS -->
                 <div class="card">
                     <div class="card-header border-transparent">
-                        <h3 class="card-title">All Courses</h3>
+                        <h3 class="card-title">Transaction History</h3>
 
                         <div class="card-tools">
-                            <button class="btn btn-primary">See Other Courses</button>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
@@ -104,79 +99,35 @@
                             <table class="table m-0">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>Item</th>
+                                        <th>Type</th>
+                                        <th>Wallet</th>
                                         <th>Status</th>
-                                        <th>Popularity</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">
-                                                <img style="height: 50px; width: 50px;"
-                                                    src="{{ asset('backend') }}/dist/img/default-150x150.png"
-                                                    alt=""></a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="badge badge-success">Shipped</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                90,80,90,-70,61,-83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-warning">Pending</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                90,80,-90,70,61,-83,68</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                90,-80,90,70,-61,83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-info">Processing</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00c0ef" data-height="20">
-                                                90,80,-90,70,-61,83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-warning">Pending</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                90,80,-90,70,61,-83,68</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                90,-80,90,70,-61,83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="badge badge-success">Shipped</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                90,80,90,-70,61,-83,63</div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($transactions->take(10) as $transaction)
+                                        <tr>
+                                            <td>
+                                                @if ($transaction->user)
+                                                    {{ $transaction->user->username }}
+                                                @else
+                                                    Deposit
+                                                @endif
+                                            </td>
+                                            <td>{{ $transaction->wallet_type }}</td>
+                                            <td>
+                                                ${{ number_format($transaction->balance, 1) }}
+                                            </td>
+                                            <td><span
+                                                    class="badge badge-{{ $transaction->status == 'confirm' ? 'info' : 'danger' }}">{{ $transaction->status }}</span>
+                                            </td>
+                                            <td>
+                                                {{ $transaction->created_at->diffForHumans() }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -230,68 +181,27 @@
                 <!-- /.info-box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Browser Usage</h3>
+                        <div class="">
+                            <p class="card-title">Limit Balance</p>
+                        </div>
 
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
+                            <h5>500</h5>
                         </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="chart-responsive">
-                                    <canvas id="pieChart" height="150"></canvas>
-                                </div>
-                                <!-- ./chart-responsive -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-md-4">
-                                <ul class="chart-legend clearfix">
-                                    <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                                    <li><i class="far fa-circle text-success"></i> IE</li>
-                                    <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                                    <li><i class="far fa-circle text-info"></i> Safari</li>
-                                    <li><i class="far fa-circle text-primary"></i> Opera</li>
-                                    <li><i class="far fa-circle text-secondary"></i> Navigator</li>
-                                </ul>
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer p-0">
                         <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    United States of America
-                                    <span class="float-right text-danger">
-                                        <i class="fas fa-arrow-down text-sm"></i>
-                                        12%</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    India
-                                    <span class="float-right text-success">
-                                        <i class="fas fa-arrow-up text-sm"></i> 4%
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    China
-                                    <span class="float-right text-warning">
-                                        <i class="fas fa-arrow-left text-sm"></i> 0%
-                                    </span>
-                                </a>
-                            </li>
+                            @foreach ($packages as $package)
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        {{ $package->human_readable_duration }}
+                                        <span class="float-right text-info">
+                                            <i class="fas fa-arrow-up text-sm"></i>
+                                            {{ number_format($package->target_price, 1) }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- /.footer -->

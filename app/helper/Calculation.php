@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ActivePackage;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,12 @@ class Calculate
 
         $wallets->map(function ($wallet) use (&$positiveBalance) {
             $walletType = $wallet->wallet_type;
-            $balance = $wallet->balance;
+            $balance = (float)$wallet->balance;
+
+            if (!is_numeric($balance)) {
+                // Handle non-numeric value, log it, or set it to 0
+                $balance = 0.0; // For example, set it to 0
+            }
 
             if (!isset($positiveBalance[$walletType])) {
                 $positiveBalance[$walletType] = 0;
@@ -27,8 +33,12 @@ class Calculate
 
         $negativeWallets->map(function ($wallet) use (&$negativeBalance) {
             $walletType = $wallet->wallet_type;
-            $balance = $wallet->balance;
+            $balance = (float)$wallet->balance;
 
+            if (!is_numeric($balance)) {
+                // Handle non-numeric value, log it, or set it to 0
+                $balance = 0.0; // For example, set it to 0
+            }
             if (!isset($negativeBalance[$walletType])) {
                 $negativeBalance[$walletType] = 0;
             }
@@ -46,5 +56,10 @@ class Calculate
             }
         }
         return $final;
+    }
+
+    public static function limitBalance()
+    {
+        $activePackage = ActivePackage::where('user_id', Auth::user()->id)->get();
     }
 }

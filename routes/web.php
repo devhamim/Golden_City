@@ -25,7 +25,8 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 
 // member route start
 Route::get('/member/add', [MemberController::class, 'add_member'])->name('add.member');
-Route::get('/member/packge/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
+Route::get('/member/package/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
+Route::post('/member/package/store', [MemberController::class, 'member_packge_store'])->name('member.packge.store');
 Route::get('/banned/member', [MemberController::class, 'banned_member'])->name('banned.member');
 Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
 Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('member.bonus');
@@ -109,9 +110,10 @@ Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->
 // package route start
 
 Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
+Route::get('/user/package/list', [PackageController::class, 'user_package_list'])->name('user.package.list');
+Route::get('/user/package/purchase/{id}', [PackageController::class, 'user_package_purchase'])->name('user.package.purchase');
 // package route end
 
-Route::get('/package/create', [PackageController::class, 'link'])->name('active.package');
 // package route end
 
 

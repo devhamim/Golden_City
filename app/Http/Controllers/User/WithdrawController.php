@@ -31,11 +31,12 @@ class WithdrawController extends Controller
 
             if ($balance[$request->wallet] >= $request->amount) {
                 $wallet = new Wallet();
-                $wallet->sender_id = $request->id;
-                $wallet->receiver_id = $receiver_id;
-                $wallet->wallet_type = $request->wallet;
-                $wallet->transaction_type = 'deposit';
-                $wallet->balance = $request->amount;
+                $wallet->sender_id          = $request->id;
+                $wallet->receiver_id        = $receiver_id;
+                $wallet->wallet_type        = $request->wallet;
+                $wallet->transaction_type   = 'deposit';
+                $wallet->status             = 'confirm';
+                $wallet->balance            = $request->amount;
                 $wallet->save();
                 return back()->with('succ', 'Transfer complete');
             } else {

@@ -1,12 +1,23 @@
 @php
-    // $cc = Auth::check() ? Auth::user()->fName . ' ' . Auth::user()->id : '';
-    use App\Models\Wallet;
-    $wallets = Wallet::where('receiver_id', Auth::user()->id)->get();
-    $balance = 0;
-    foreach ($wallets as $wallet) {
-        $balance += $wallet->balance;
+    $balance = Calculate::Balance();
+    $credit = 0.0;
+    $refferal = 0.0;
+    $shopping = 0.0;
+
+    // Check if the balance array has the corresponding keys and assign the formatted values
+    if (isset($balance['credit']) && is_numeric($balance['credit'])) {
+        $credit = $balance['credit'];
     }
 
+    if (isset($balance['refferal']) && is_numeric($balance['refferal'])) {
+        $refferal = $balance['refferal'];
+    }
+
+    if (isset($balance['shopping']) && is_numeric($balance['shopping'])) {
+        $shopping = $balance['shopping'];
+    }
+
+    $totalBalance = $credit + $refferal + $shopping;
 @endphp
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -18,9 +29,7 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="index3.html" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
-        </li>
+
     </ul>
 
     <!-- Right navbar links -->
@@ -30,7 +39,7 @@
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" style="color: #000000e8;font-weight: bold">
-                ${{ number_format($balance, 1) }}
+                ${{ number_format($totalBalance, 1) }}
             </a>
 
         </li>

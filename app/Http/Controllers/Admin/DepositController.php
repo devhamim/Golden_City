@@ -54,7 +54,7 @@ class DepositController extends Controller
             ]);
 
             $wallet = new Wallet();
-            $wallet->sender_id = Auth::user()->id;
+            $wallet->sender_id = null;
             $wallet->receiver_id = $request->user_id;
             $wallet->wallet_type = 'credit';
             $wallet->transaction_type = 'deposit';
