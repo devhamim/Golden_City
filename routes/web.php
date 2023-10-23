@@ -90,6 +90,11 @@ Route::get('/generation/set', [SetController::class, 'generation_set'])->name('g
 Route::post('/generation/set/update', [SetController::class, 'generation_set_update'])->name('generation.set.update');
 // set route end
 
+
+// bonus set 
+Route::get('/bonus/set', [SetController::class, 'bonus_set'])->name('bonus.set');
+
+
 // tree soute start
 Route::get('/tree/hide/show', [TreeController::class, 'tree_hide_show'])->name('tree.hide.show');
 // tree soute end

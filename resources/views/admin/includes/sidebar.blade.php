@@ -261,6 +261,23 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
+                            Bonus Set
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('bonus.set') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bonus Set</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
                             Tree
                             <i class="fas fa-angle-left right"></i>
                         </p>

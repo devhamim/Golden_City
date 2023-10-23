@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 
 class SetController extends Controller
 {
+
+    function bonus_set(){
+        return view('admin.bonus_set.bonusset');
+    }
+
+
     function daily_bonus_set()
     {
         $daily_bonus = DailyBonusSet::first();
