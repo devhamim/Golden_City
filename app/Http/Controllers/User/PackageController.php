@@ -8,9 +8,7 @@ use App\Models\Package;
 use App\Models\Wallet;
 use Calculate;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Utils\Floats;
 
 class PackageController extends Controller
 {
@@ -52,7 +50,7 @@ class PackageController extends Controller
             $wallet = new Wallet();
             $wallet->sender_id = Auth::user()->id;
             $wallet->wallet_type = 'credit';
-            $wallet->transaction_type = 'credit';
+            $wallet->transaction_type = 'deposit';
             $wallet->balance = (float)$package->price;
             $wallet->status = 'confirm';
             $wallet->save();

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('sender_id')->nullable();
             $table->integer('receiver_id')->nullable();
             $table->enum('wallet_type', ['credit', 'refferal', 'shopping']);
-            $table->enum('transaction_type', ['deposit', 'withdraw', 'credit']);
+            $table->enum('transaction_type', ['deposit', 'transfer', 'withdraw', 'credit']);
             $table->enum('status', ['pending', 'confirm', 'cancel']);
             $table->decimal('balance', 10, 2)->default(0.00);
             $table->timestamps();

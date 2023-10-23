@@ -34,7 +34,7 @@ class WithdrawController extends Controller
                 $wallet->sender_id          = $request->id;
                 $wallet->receiver_id        = $receiver_id;
                 $wallet->wallet_type        = $request->wallet;
-                $wallet->transaction_type   = 'deposit';
+                $wallet->transaction_type   = 'transfer';
                 $wallet->status             = 'confirm';
                 $wallet->balance            = $request->amount;
                 $wallet->save();
