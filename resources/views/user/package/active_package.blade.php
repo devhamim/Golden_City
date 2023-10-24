@@ -1,4 +1,7 @@
 @extends('admin.master')
+@php
+    use Carbon\Carbon;
+@endphp
 @section('admin_content')
     <div class="container-fluid">
         <div class="row">
@@ -15,26 +18,24 @@
                                 <tr>
                                     <th>Package Name </th>
                                     <th>Package Amount</th>
-                                    <th>Created Date</th>
+                                    <th>Status</th>
                                     <th>Expired Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Joinning</td>
-                                    <td>10</td>
-                                    <td>08-11-2022</td>
-                                    <td>28-10-2024</td>
-                                </tr>
+                                @foreach ($packages as $package)
+                                    <tr>
+                                        <td>{{ $package->activePackage->name }}</td>
+                                        <td>{{ number_format($package->price, 1) }}</td>
+                                        <td>
+                                            <span
+                                                class="badge bg-{{ $package->status == 1 ? 'info' : 'danger' }}">{{ $package->status == 1 ? 'Active' : 'Deactive' }}
+                                            </span>
+                                        </td>
+                                        <td>{{ Carbon::parse($package->duration)->format('d M, Y') }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Package Name </th>
-                                    <th>Package Amount</th>
-                                    <th>Created Date</th>
-                                    <th>Expired Date</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\DailyBonusSet;
+use App\Models\BonusSets;
 use App\Models\GenerationSet;
 use App\Models\MatchingBonusSet;
 use App\Models\ReferenceBonusSet;
@@ -13,38 +13,48 @@ use Illuminate\Http\Request;
 class SetController extends Controller
 {
 
-    function bonus_set(){
+    function bonus_set()
+    {
         return view('admin.bonus_set.bonusset');
     }
 
 
-    function daily_bonus_set()
-    {
-        $daily_bonus = DailyBonusSet::first();
-        // return $daily_bonus;
-        return view('admin.set.daily_bonus_set', compact('daily_bonus'));
-    }
+    // function daily_bonus_set()
+    // {
+    //     $daily_bonus = DailyBonusSet::first();
+    //     // return $daily_bonus;
+    //     return view('admin.set.daily_bonus_set', compact('daily_bonus'));
+    // }
     function daily_bonus_set_update(Request $request)
     {
-        $total_wallet = $request->c_wallet + $request->r_wallet + $request->s_wallet;
-        if ($total_wallet > 101) {
+        $total_wallet = $request->c_wallet + $request->r_wallet + $request->s_wallet; //Count total
+
+        if ($total_wallet > 101) { //checking limit
             return 'Max wallet value is 100%';
         } else {
             $validated = $request->validate([
-                'bonus'     => 'required|max:99|numeric',
-                'c_wallet'  => 'numeric',
-                'r_wallet'  => 'numeric',
-                's_wallet'  => 'numeric',
+                'bonus_type'    => 'required',
+                'bonus'         => 'required|max:99|numeric',
+                'c_wallet'      => 'numeric',
+                'r_wallet'      => 'numeric',
+                's_wallet'      => 'numeric',
             ]);
-            DailyBonusSet::where('id', $request->daily_bonus_set_id)->update([
-                'bonus' => $request->bonus,
-                'c_wallet' => $request->c_wallet,
-                'r_wallet' => $request->r_wallet,
-                's_wallet' => $request->s_wallet,
-            ]);
-            return back();
+
+            if (BonusSets::where('bonus_type', $request->bonus_type)->exists()) {
+                return back()->with(['err' => 'You can not insert same item twice']);
+            }
+
+            $bonus = new BonusSets();
+            $bonus->bonus_type  = $request->bonus_type;
+            $bonus->bonus       = $request->bonus;
+            $bonus->c_wallet    = $request->c_wallet;
+            $bonus->r_wallet    = $request->r_wallet;
+            $bonus->s_wallet    = $request->s_wallet;
+            $bonus->save();
+            return back()->with(['succ' => 'Bonus sets added']);
         }
     }
+
     function reference_bonus_set()
     {
         $reference_bonus_set = ReferenceBonusSet::first();

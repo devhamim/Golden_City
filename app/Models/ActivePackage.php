@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,10 +9,11 @@ class ActivePackage extends Model
 {
     use HasFactory;
 
+    protected $dates = ['duration'];
 
 
-    public function getHumanReadableDurationAttribute()
+    public function activePackage() //Find Parent
     {
-        return Carbon::parse($this->attributes['duration'])->diffForHumans();
+        return $this->belongsTo(Package::class, 'package_id');
     }
 }

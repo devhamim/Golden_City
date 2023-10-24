@@ -76,7 +76,7 @@ Route::post('/generation/set/update', [SetController::class, 'generation_set_upd
 // set route end
 
 
-// bonus set 
+// bonus set
 Route::get('/bonus/set', [SetController::class, 'bonus_set'])->name('bonus.set');
 
 

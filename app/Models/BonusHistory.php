@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DailyBonusSet extends Model
+class BonusHistory extends Model
 {
     use HasFactory;
 }

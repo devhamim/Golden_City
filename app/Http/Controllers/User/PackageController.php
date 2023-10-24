@@ -9,12 +9,14 @@ use App\Models\Wallet;
 use Calculate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use MLM;
 
 class PackageController extends Controller
 {
     function active_package()
     {
-        return view('user.package.active_package');
+        $package = ActivePackage::where('user_id', Auth::user()->id)->get();
+        return view('user.package.active_package', ['packages' => $package]);
     }
 
     function user_package_list()
@@ -31,30 +33,31 @@ class PackageController extends Controller
             $package = Package::find($id); //package
 
             $balance = Calculate::Balance(); //Balance
-            $credit = $balance['credit'];
+            $credit  = $balance['credit'];
 
             if ($credit < (float) $package->price) {
                 return back()->with(['err' => 'Insufficient balance']);
             }
 
             //active package
-            $activePack = new ActivePackage();
-            $activePack->user_id = Auth::user()->id;
-            $activePack->package_id = $id;
-            $activePack->price = $package->price;
-            $activePack->target_price = $package->target_price;
-            $activePack->duration = Carbon::now()->addDays($package->day);
+            $activePack                 = new ActivePackage();
+            $activePack->user_id        = Auth::user()->id;
+            $activePack->package_id     = $id;
+            $activePack->price          = $package->price;
+            $activePack->target_price   = $package->target_price;
+            $activePack->duration       = Carbon::now()->addDays($package->day);
             $activePack->save();
 
             //Purchase History
-            $wallet = new Wallet();
-            $wallet->sender_id = Auth::user()->id;
-            $wallet->wallet_type = 'credit';
-            $wallet->transaction_type = 'deposit';
-            $wallet->balance = (float)$package->price;
-            $wallet->status = 'confirm';
+            $wallet                     = new Wallet();
+            $wallet->sender_id          = Auth::user()->id;
+            $wallet->wallet_type        = 'credit';
+            $wallet->transaction_type   = 'deposit';
+            $wallet->balance            = (float)$package->price;
+            $wallet->status             = 'confirm';
             $wallet->save();
 
+            MLM::RefferanceBonus($package, 'refferal');
 
             return back()->with(['succ' => 'Package actived']);
         } else {

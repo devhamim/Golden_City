@@ -101,4 +101,9 @@ class User extends Authenticatable
 
         return $child->findLastUser($child->right_child_id);
     }
+
+    public function parent() //Find Parent
+    {
+        return $this->belongsTo(User::class, 'parent_id');
+    }
 }

@@ -26,7 +26,8 @@
     },
     "autoload": {
         "files": [
-            "app/helper/Calculation.php"
+            "app/helper/Calculation.php",
+            "app/helper/MLM.php"
         ],
         "psr-4": {
             "App\\": "app/",

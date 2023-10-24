@@ -1,15 +1,6 @@
 @extends('admin.master')
 @section('admin_content')
     <div class="container-fluid">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
@@ -27,12 +18,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Select A Bonus Set<span class="text-danger">*</span></label>
-                                        <select class="form-control" style="width: 100%;">
+                                        <select class="form-control" name="bonus_type" style="width: 100%;">
                                             <option selected="selected">Select</option>
-                                            <option value="0">Daily Bonus Set</option>
-                                            <option value="1">Reference Bonus Set</option>
-                                            <option value="2">Generation Bonus Set</option>
-                                            <option value="3">Matching Bonus Set</option>
+                                            <option value="daily">Daily Bonus Set</option>
+                                            <option value="refferal">Reference Bonus Set</option>
+                                            <option value="matching">Generation Bonus Set</option>
+                                            <option value="generation">Matching Bonus Set</option>
                                         </select>
                                     </div>
                                 </div>
@@ -40,32 +31,32 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Bonus (%)<strong
                                                 class="text-danger">*</strong></label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" value=""
-                                            name="bonus" placeholder="Only integer">
+                                        <input type="number" class="form-control" id="exampleInputEmail1" name="bonus"
+                                            placeholder="Only integer" max="100">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">C wallet (%)<strong
                                                 class="text-danger">*</strong></label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" value=""
-                                            name="c_wallet" placeholder="Only integer">
+                                        <input type="number" class="form-control" id="exampleInputEmail1" name="c_wallet"
+                                            value="0" min="0" max="100">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">R wallet (%)<strong
                                                 class="text-danger">*</strong></label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" value=""
-                                            name="r_wallet" placeholder="Only integer">
+                                        <input type="number" class="form-control" id="exampleInputEmail1" name="r_wallet"
+                                            value="0" min="0" max="100">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">S wallet (%)<strong
                                                 class="text-danger">*</strong></label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" value=""
-                                            name="s_wallet" placeholder="Only integer">
+                                        <input type="number" class="form-control" id="exampleInputEmail1" name="s_wallet"
+                                            value="0" min="0" max="100">
                                     </div>
                                 </div>
                             </div>
@@ -89,4 +80,29 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                toastr.error("Validation errors occurred. Please check the form.");
+            });
+        </script>
+    @endif
+
+    @if (session()->has('err'))
+        <script>
+            $(document).ready(function() {
+                toastr.error("{{ session('err') }}");
+            });
+        </script>
+    @endif
+
+    @if (session()->has('succ'))
+        <script>
+            $(document).ready(function() {
+                toastr.success("{{ session('succ') }}");
+            });
+        </script>
+    @endif
 @endsection

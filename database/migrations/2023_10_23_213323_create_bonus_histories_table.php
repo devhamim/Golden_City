@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bonus_sets', function (Blueprint $table) {
+        Schema::create('bonus_histories', function (Blueprint $table) {
             $table->id();
             $table->enum('bonus_type', ['daily', 'refferal', 'matching', 'generation']);
-            $table->integer('bonus');
-            $table->integer('c_wallet');
-            $table->integer('r_wallet');
-            $table->integer('s_wallet');
+            $table->integer('user_id');
+            $table->integer('sender_id')->nullable();
+            $table->integer('package_id')->nullable();
+            $table->enum('position', ['left', 'right'])->nullable();
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bonus_sets');
+        Schema::dropIfExists('bonus_histories');
     }
 };
