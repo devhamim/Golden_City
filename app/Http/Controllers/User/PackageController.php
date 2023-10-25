@@ -58,6 +58,8 @@ class PackageController extends Controller
             $wallet->save();
 
             MLM::RefferanceBonus($package, 'refferal');
+            MLM::LevelBonus($package, 'generation');
+
 
             return back()->with(['succ' => 'Package actived']);
         } else {

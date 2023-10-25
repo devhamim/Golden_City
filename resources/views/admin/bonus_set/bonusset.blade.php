@@ -22,8 +22,8 @@
                                             <option selected="selected">Select</option>
                                             <option value="daily">Daily Bonus Set</option>
                                             <option value="refferal">Reference Bonus Set</option>
-                                            <option value="matching">Generation Bonus Set</option>
-                                            <option value="generation">Matching Bonus Set</option>
+                                            <option value="generation">Generation Bonus Set</option>
+                                            <option value="matching">Matching Bonus Set</option>
                                         </select>
                                     </div>
                                 </div>
