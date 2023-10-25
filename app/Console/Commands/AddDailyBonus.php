@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\ActivePackage;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Auth;
+use MLM;
 
 class AddDailyBonus extends Command
 {
@@ -27,7 +27,9 @@ class AddDailyBonus extends Command
      */
     public function handle()
     {
-        $package = ActivePackage::where('user_id', Auth::user()->id)->get();
-        dd($package);
+        $packages = ActivePackage::where('status', 1)->get();
+        foreach ($packages as $package) {
+            MLM::DailyBonus($package, 'daily');
+        }
     }
 }
