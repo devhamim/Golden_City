@@ -43,6 +43,42 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function leftChild()
+    {
+        return $this->belongsTo(User::class, 'left_child_id');
+    }
+
+    public function rightChild()
+    {
+        return $this->belongsTo(User::class, 'right_child_id');
+    }
+
+    public function getDownlineChildren($level = 1, $maxLevel = 5)
+    {
+        if ($level > $maxLevel) {
+            return collect();
+        }
+
+        $downlineChildren = collect();
+
+        if ($this->leftChild) {
+            $downlineChildren->push($this->leftChild);
+            $downlineChildren = $downlineChildren->merge(
+                $this->leftChild->getDownlineChildren($level + 1, $maxLevel)
+            );
+        }
+
+        if ($this->rightChild) {
+            $downlineChildren->push($this->rightChild);
+            $downlineChildren = $downlineChildren->merge(
+                $this->rightChild->getDownlineChildren($level + 1, $maxLevel)
+            );
+        }
+
+        return $downlineChildren;
+    }
+
+
     public function totalDownlineCount($side = null) // Count Downline child
     {
         if ($side === 'left') {
