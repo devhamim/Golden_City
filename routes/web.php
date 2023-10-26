@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\PackageController;
@@ -18,106 +19,118 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// member route start
-Route::get('/member/add', [MemberController::class, 'add_member'])->name('add.member');
-Route::get('/member/package/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
-Route::post('/member/package/store', [MemberController::class, 'member_packge_store'])->name('member.packge.store');
-Route::get('/banned/member', [MemberController::class, 'banned_member'])->name('banned.member');
-Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
-Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('member.bonus');
-// member route end
+    // admin route 
+    Route::middleware(['isAdmin'])->group(function () {
+        Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+        // member route start
+        Route::get('/member/add', [MemberController::class, 'add_member'])->name('add.member');
+        Route::get('/member/package/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
+        Route::post('/member/package/store', [MemberController::class, 'member_packge_store'])->name('member.packge.store');
+        Route::get('/banned/member', [MemberController::class, 'banned_member'])->name('banned.member');
+        Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
+        Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('member.bonus');
+        // member route end
 
-// deposit route start
-Route::get('/admin/deposit', [DepositController::class, 'admin_deposit'])->name('admin.deposit');
-Route::get('/deposite/request', [DepositController::class, 'deposite_request'])->name('deposite.request');
-Route::post('/deposite/request/status', [DepositController::class, 'deposite_request_status'])->name('deposite.request.status');
-Route::get('/deposite/reject', [DepositController::class, 'deposite_reject'])->name('deposite.reject');
-// deposit route end
+        // deposit route start
+        Route::get('/admin/deposit', [DepositController::class, 'admin_deposit'])->name('admin.deposit');
+        Route::get('/deposite/request', [DepositController::class, 'deposite_request'])->name('deposite.request');
+        Route::post('/deposite/request/status', [DepositController::class, 'deposite_request_status'])->name('deposite.request.status');
+        Route::get('/deposite/reject', [DepositController::class, 'deposite_reject'])->name('deposite.reject');
+        // deposit route end
 
-// withdraw route start
-Route::get('/admin/withdraw', [WithdrawController::class, 'admin_withdraw'])->name('admin.withdraw');
-Route::get('/admin/withdraw/request', [WithdrawController::class, 'admin_withdraw_request'])->name('admin.withdraw.request');
-Route::get('/admin/withdraw/commission', [WithdrawController::class, 'admin_withdraw_commission'])->name('admin.withdraw.commission');
-Route::get('/admin/withdraw/reject', [WithdrawController::class, 'admin_withdraw_reject'])->name('admin.withdraw.reject');
-Route::get('/stop/withdraw', [WithdrawController::class, 'stop_withdraw'])->name('stop.withdraw');
-Route::get('/stop/all/withdraw', [WithdrawController::class, 'stop_all_withdraw'])->name('stop.all.withdraw');
-Route::get('/withdraw/vat/set', [WithdrawController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
-// withdraw route end
-
-
-// news route start
-Route::get('/update/news', [NewsController::class, 'update_news'])->name('update.news');
-Route::get('/news/promotion', [NewsController::class, 'news_promotion'])->name('news.promotion');
-Route::get('/fake/news', [NewsController::class, 'fake_news'])->name('fake.news');
-// news route end
-
-// set route start
-Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
-Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
-
-Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
-Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
-Route::post('/reference/bonus/set/update', [SetController::class, 'reference_bonus_set_update'])->name('reference.bonus.set.update');
-
-Route::get('/transfer/vat/set', [SetController::class, 'transfer_vat_set'])->name('transfer.vat.set');
-
-Route::get('/withdraw/vat/set', [SetController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
-
-Route::get('/matching/bonus/set', [SetController::class, 'matching_bonus_set'])->name('matching.bonus.set');
-Route::post('/matching/bonus/set/update', [SetController::class, 'matching_bonus_set_update'])->name('matching.bonus.set.update');
-
-Route::get('/generation/set', [SetController::class, 'generation_set'])->name('generation.set');
-Route::post('/generation/set/update', [SetController::class, 'generation_set_update'])->name('generation.set.update');
-// set route end
+        // withdraw route start
+        Route::get('/admin/withdraw', [WithdrawController::class, 'admin_withdraw'])->name('admin.withdraw');
+        Route::get('/admin/withdraw/request', [WithdrawController::class, 'admin_withdraw_request'])->name('admin.withdraw.request');
+        Route::get('/admin/withdraw/commission', [WithdrawController::class, 'admin_withdraw_commission'])->name('admin.withdraw.commission');
+        Route::get('/admin/withdraw/reject', [WithdrawController::class, 'admin_withdraw_reject'])->name('admin.withdraw.reject');
+        Route::get('/stop/withdraw', [WithdrawController::class, 'stop_withdraw'])->name('stop.withdraw');
+        Route::get('/stop/all/withdraw', [WithdrawController::class, 'stop_all_withdraw'])->name('stop.all.withdraw');
+        Route::get('/withdraw/vat/set', [WithdrawController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
+        // withdraw route end
 
 
-// bonus set
-Route::get('/bonus/set', [SetController::class, 'bonus_set'])->name('bonus.set');
+        // news route start
+        Route::get('/update/news', [NewsController::class, 'update_news'])->name('update.news');
+        Route::get('/news/promotion', [NewsController::class, 'news_promotion'])->name('news.promotion');
+        Route::get('/fake/news', [NewsController::class, 'fake_news'])->name('fake.news');
+        // news route end
+
+        // set route start
+        Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
+        Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
+
+        Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
+        Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
+        Route::post('/reference/bonus/set/update', [SetController::class, 'reference_bonus_set_update'])->name('reference.bonus.set.update');
+
+        Route::get('/transfer/vat/set', [SetController::class, 'transfer_vat_set'])->name('transfer.vat.set');
+
+        Route::get('/withdraw/vat/set', [SetController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
+
+        Route::get('/matching/bonus/set', [SetController::class, 'matching_bonus_set'])->name('matching.bonus.set');
+        Route::post('/matching/bonus/set/update', [SetController::class, 'matching_bonus_set_update'])->name('matching.bonus.set.update');
+
+        Route::get('/generation/set', [SetController::class, 'generation_set'])->name('generation.set');
+        Route::post('/generation/set/update', [SetController::class, 'generation_set_update'])->name('generation.set.update');
+        // set route end
 
 
-// tree soute start
-Route::get('/tree/hide/show', [TreeController::class, 'tree_hide_show'])->name('tree.hide.show');
-// tree soute end
+        // bonus set
+        Route::get('/bonus/set', [SetController::class, 'bonus_set'])->name('bonus.set');
 
 
-// access route start
-Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
-Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])->name('user.bkash.access');
-// access route end
+        // tree soute start
+        Route::get('/tree/hide/show', [TreeController::class, 'tree_hide_show'])->name('tree.hide.show');
+        // tree soute end
 
 
-// settings route start
-Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting');
-Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
-// settings route end
+        // access route start
+        Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
+        Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])->name('user.bkash.access');
+        // access route end
+
+
+        // settings route start
+        Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting');
+        Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
+        // settings route end
+
+    });
 
 
 
-// user all route *****
 
-Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
-Route::post('/user/transfer/request', [UserWithdrawController::class, 'transfer_request'])->name('user.transfer.request');
+    // user all route *****
 
-// deposit route start
-Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
-Route::post('/user/deposit/request', [UserDepositController::class, 'deposit_request'])->name('user.deposit.request');
-// deposit route end
+    Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
+    Route::post('/user/transfer/request', [UserWithdrawController::class, 'transfer_request'])->name('user.transfer.request');
 
-// withdraw route start
-Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw');
-// withdraw route end
+    // deposit route start
+    Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
+    Route::post('/user/deposit/request', [UserDepositController::class, 'deposit_request'])->name('user.deposit.request');
+    // deposit route end
 
-// package route start
+    // withdraw route start
+    Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw');
+    // withdraw route end
 
-Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
-Route::get('/user/package/list', [PackageController::class, 'user_package_list'])->name('user.package.list');
-Route::get('/user/package/purchase/{id}', [PackageController::class, 'user_package_purchase'])->name('user.package.purchase');
-// package route end
+    // package route start
+
+    Route::get('/active/package', [PackageController::class, 'active_package'])->name('active.package');
+    Route::get('/user/package/list', [PackageController::class, 'user_package_list'])->name('user.package.list');
+    Route::get('/user/package/purchase/{id}', [PackageController::class, 'user_package_purchase'])->name('user.package.purchase');
+    // package route end
+
+    // account route start
+    Route::get('/account/verified', [AccountController::class, 'account_verified'])->name('account.verified'); 
+    Route::post('user/nid/store', [AccountController::class, 'user_nid_store'])->name('user.nid.store');
+    // account route end
+});
 
 // package route end
 
