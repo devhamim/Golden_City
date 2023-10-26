@@ -65,8 +65,18 @@
                 <!-- MAP & BOX PANE -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Hello {{ Auth::user()->username }}</h3>
-
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3 class="card-title">Hello {{ Auth::user()->username }}</h3>
+                            </div >
+                            @if (Auth::user()->verified_status == null)
+                            <div class="col-lg-6 text-danger">
+                                <h3 class="card-title">Please verify your account</h3>
+                            </div>
+                            @endif
+                        </div>
+                        
+                       
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-3">

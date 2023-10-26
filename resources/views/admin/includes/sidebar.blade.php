@@ -38,8 +38,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-       with font-awesome or any other icon font library -->
-                <li class="nav-header bg-secondary">ADMIN</li>
+                   with font-awesome or any other icon font library -->
+                @if (Auth::user()->role == 'admin')
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -337,7 +337,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-header bg-secondary">USER</li>
+                @else
+
                 <li class="nav-item">
                     <a href="{{ route('user.dashboard') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
@@ -347,7 +348,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                @if (Auth::user()->verified_status != null)
+                    <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
@@ -421,8 +423,9 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
                         <i class="nav-icon far fa-plus-square"></i>
                         <p>
                             Account
@@ -431,69 +434,62 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('user.info') }}" class="nav-link"> --}}
                             <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Personal Info</p>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('account.verified') }}" class="nav-link"> --}}
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Account Verified</p>
+                            <a href="{{ route('account.verified') }}" class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Account Verified</p>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('upgrade.account') }}" class="nav-link"> --}}
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Upgrade Account</p>
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Upgrade Account</p>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('pin.code') }}" class="nav-link"> --}}
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Pin Code</p>
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pin Code</p>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('password.change') }}" class="nav-link"> --}}
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Change Password</p>
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Change Password</p>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('user.profile') }}" class="nav-link"> --}}
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>View Profile</p>
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Profile</p>
                             </a>
                         </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('edit.user.profile') }}" class="nav-link"> --}}
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Edit Profile</p>
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Edit Profile</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-header">LABELS</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-danger"></i>
-                        <p class="text">Important</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-warning"></i>
-                        <p>Warning</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p>Informational</p>
-                    </a>
-                </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
