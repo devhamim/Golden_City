@@ -1,3 +1,8 @@
+@php
+    use App\Models\Tree;
+    $status = Tree::first();
+
+@endphp
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -423,6 +428,28 @@
                         </li>
                     </ul>
                 </li>
+                @if($status->tree == 'Show')
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>
+                            Tree
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('user.tree.access') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tree</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @else
+                    
+                @endif
+                
                 @endif
                 <li class="nav-item">
                     <a href="#" class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
