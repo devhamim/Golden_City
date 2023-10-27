@@ -86,11 +86,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // tree soute start
         Route::get('/tree/hide/show', [TreeController::class, 'tree_hide_show'])->name('tree.hide.show');
+        Route::post('/tree/config', [TreeController::class, 'tree_config'])->name('tree.config');
         // tree soute end
 
 
         // access route start
-        Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
+        
         Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])->name('user.bkash.access');
         // access route end
 
@@ -104,7 +105,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-
+// tree 
+Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
     // user all route *****
 
     Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
