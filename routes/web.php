@@ -24,7 +24,7 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    // admin route 
+    // admin route
     Route::middleware(['isAdmin'])->group(function () {
         Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
         // member route start
@@ -90,7 +90,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
         // access route start
-        Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
         Route::get('/user/bkash/access', [AccessController::class, 'user_bkash_access'])->name('user.bkash.access');
         // access route end
 
@@ -126,8 +125,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/package/purchase/{id}', [PackageController::class, 'user_package_purchase'])->name('user.package.purchase');
     // package route end
 
+
+    //tree
+    Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
     // account route start
-    Route::get('/account/verified', [AccountController::class, 'account_verified'])->name('account.verified'); 
+    Route::get('/account/verified', [AccountController::class, 'account_verified'])->name('account.verified');
     Route::post('user/nid/store', [AccountController::class, 'user_nid_store'])->name('user.nid.store');
     // account route end
 });
