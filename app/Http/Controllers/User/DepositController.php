@@ -34,7 +34,6 @@ class DepositController extends Controller
         $deposit->transaction_number    = $request->transaction_number;
         $deposit->save();
 
-
         return back()->with(['succ' => 'Successful! Money will be added soon']);
     }
 }

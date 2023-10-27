@@ -11,13 +11,14 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="{{ route('tree.config') }}" method="POST">
+                        @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Show/Hide<span class="text-danger">*</span></label>
-                                        <select class="form-control" style="width: 100%;">
+                                        <select class="form-control" name="status" style="width: 100%;">
                                             <option selected="selected">Select</option>
                                             <option>Show</option>
                                             <option>Hide</option>
