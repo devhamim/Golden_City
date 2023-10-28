@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
+use App\Http\Controllers\NidCOntroller;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
@@ -99,6 +100,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/account/setting', [SettingController::class, 'account_setting'])->name('account.setting');
         Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
         // settings route end
+
+       Route::get('nid/request', [NidCOntroller::class, 'nid_request'])->name('nid.request');
+       Route::post('/nid/request/status', [NidCOntroller::class, 'nid_request_status'])->name('nid.request.status');
+       Route::get('/nid/verified', [NidCOntroller::class, 'nid_verified'])->name('nid.verified');
+       Route::get('/nid/rejected', [NidCOntroller::class, 'nid_rejected'])->name('nid.rejected');
 
     });
 

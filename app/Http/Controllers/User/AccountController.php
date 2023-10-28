@@ -25,11 +25,12 @@ class AccountController extends Controller
         UserVerified::insert([
             'user_id' => Auth::user()->id,
             'id_card' => $image_name,
+            'status' =>'pending',
             'created_at' =>Carbon::now(),
         ]);
-        User::where('id', Auth::user()->id)->update([
-            'verified_status' => '1',
-        ]);
+        // User::where('id', Auth::user()->id)->update([
+        //     'verified_status' => '1',
+        // ]);
         return back();
     }
 }

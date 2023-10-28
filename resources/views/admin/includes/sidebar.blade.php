@@ -300,6 +300,39 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
+                                NID Verified
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('nid.request') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>User Request</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('nid.verified') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Verified User</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('nid.rejected') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rejected User</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
                                 Access
                                 <i class="fas fa-angle-left right"></i>
                             </p>
@@ -427,7 +460,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @if ($status->tree == 'Show')
+                        @if ($status->status == 'Show')
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-plus-square"></i>
