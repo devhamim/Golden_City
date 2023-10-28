@@ -410,56 +410,44 @@
                                 </li>
                             </ul>
                         </li>
-            </ul>
-            </li>
-            @if ($status->tree == 'Show')
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            Tree
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('user.tree.access') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tree</p>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    Balance
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Balance Transfer</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                    </ul>
-                </li>
-            @else
-            @endif
-
-            @endif
-            <li class="nav-item">
-                <a href="#" class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
-                    <i class="nav-icon far fa-plus-square"></i>
-                    <p>
-                        Account
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-plus-square"></i>
-                            <p>
-                                Balance
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
+                        @if ($status->tree == 'Show')
                             <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Balance Transfer</p>
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-plus-square"></i>
+                                    <p>
+                                        Tree
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('user.tree.access') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tree</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
+                        @else
+                        @endif
+
                     @endif
                     <li class="nav-item">
                         <a href="#"
@@ -528,8 +516,8 @@
                             </li>
                         </ul>
                     </li>
-                    @endif
-                </ul>
+                @endif
+            </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>
