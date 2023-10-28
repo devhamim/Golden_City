@@ -41,6 +41,8 @@
     <link rel="stylesheet"
         href="{{ asset('backend') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    {{-- lightbox  --}}
+    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/ekko-lightbox/ekko-lightbox.css">
     @yield('style')
 </head>
 
@@ -141,10 +143,14 @@
     <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    {{-- lightbox  --}}
+    <script src="{{ asset('backend') }}/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     {{-- font awesome --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
         integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
     @yield('script')
 
@@ -317,6 +323,23 @@
             });
         });
     </script>
+    {{-- lightbox  --}}
+    <script>
+        $(function () {
+          $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+              alwaysShowClose: true
+            });
+          });
+      
+          $('.filter-container').filterizr({gutterPixels: 3});
+          $('.btn[data-filter]').on('click', function() {
+            $('.btn[data-filter]').removeClass('active');
+            $(this).addClass('active');
+          });
+        })
+      </script>
 </body>
 
 </html>
