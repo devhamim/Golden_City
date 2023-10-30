@@ -15,6 +15,7 @@ use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\PackageController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -65,19 +66,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
         Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
 
-        Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
-        Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
-        Route::post('/reference/bonus/set/update', [SetController::class, 'reference_bonus_set_update'])->name('reference.bonus.set.update');
+        // Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
+        // Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
+        // Route::post('/reference/bonus/set/update', [SetController::class, 'reference_bonus_set_update'])->name('reference.bonus.set.update');
 
         Route::get('/transfer/vat/set', [SetController::class, 'transfer_vat_set'])->name('transfer.vat.set');
 
         Route::get('/withdraw/vat/set', [SetController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
 
-        Route::get('/matching/bonus/set', [SetController::class, 'matching_bonus_set'])->name('matching.bonus.set');
-        Route::post('/matching/bonus/set/update', [SetController::class, 'matching_bonus_set_update'])->name('matching.bonus.set.update');
+        // Route::get('/matching/bonus/set', [SetController::class, 'matching_bonus_set'])->name('matching.bonus.set');
+        // Route::post('/matching/bonus/set/update', [SetController::class, 'matching_bonus_set_update'])->name('matching.bonus.set.update');
 
-        Route::get('/generation/set', [SetController::class, 'generation_set'])->name('generation.set');
-        Route::post('/generation/set/update', [SetController::class, 'generation_set_update'])->name('generation.set.update');
+        // Route::get('/generation/set', [SetController::class, 'generation_set'])->name('generation.set');
+        // Route::post('/generation/set/update', [SetController::class, 'generation_set_update'])->name('generation.set.update');
         // set route end
 
 
@@ -139,7 +140,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // account route start
     Route::get('/account/verified', [AccountController::class, 'account_verified'])->name('account.verified');
     Route::post('user/nid/store', [AccountController::class, 'user_nid_store'])->name('user.nid.store');
+
     // account route end
+
+    // profile route start
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'profile_update'])->name('profile.update');
+    Route::post('/set/pin', [ProfileController::class, 'set_pin'])->name('set.pin');
+    Route::post('/pin/update', [ProfileController::class, 'pin_update'])->name('pin.update');
+    Route::post('/change/password', [ProfileController::class, 'change_password'])->name('change.password');
+    // profile route end
+
 });
 
 // package route end

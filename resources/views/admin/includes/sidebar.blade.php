@@ -224,24 +224,24 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('daily.bonus.set') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daily Bonus Set</p>
                                 </a>
-                            </li>
-                            <li class="nav-item">
+                            </li> --}}
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('reference.bonus.set') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reference Bonus Set</p>
                                 </a>
-                            </li>
-                            <li class="nav-item">
+                            </li> --}}
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('generation.set') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Generation Set</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ route('withdraw.vat.set') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -254,12 +254,12 @@
                                     <p>Transfer Vat Set</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('matching.bonus.set') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Matching Bonus Set</p>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -493,58 +493,9 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route('profile') }}" class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Personal Info</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('account.verified') }}"
-                                    class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Account Verified</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Upgrade Account</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pin Code</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Change Password</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Profile</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Edit Profile</p>
+                                    <p>Profile</p>
                                 </a>
                             </li>
                         </ul>
