@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\ActivePackage;
+use App\Models\Wallet;
+use Calculate;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,8 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-       
+        $transaction = Wallet::with('user')->where('receiver_id', Auth::user()->id)->orWhere('sender_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+
+        $activePackage = ActivePackage::where('user_id', Auth::user()->id)->get();
+        return view('admin.home.home', [
+            'balance'        => Calculate::Balance(),
+            'transactions'   => $transaction,
+            'packages'       => $activePackage,
+        ]);
         // return view('home');
-        return view('admin.home.home');
+        // return view('admin.home.home');
     }
 }

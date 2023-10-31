@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('admin_content')
     <div class="container-fluid">
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -23,7 +23,7 @@
                 <li>{{ session('succ') }}</li>
             </ul>
         </div>
-        @endif
+        @endif --}}
         <div class="row">
             <div class="col-md-3">
 
@@ -32,7 +32,7 @@
                     <div class="card-body box-profile">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
-                                src="{{ asset('files/profile/'. $profile->profile) }}" alt="User profile picture">
+                                src="{{ asset('files/profile/' . $profile->profile) }}" alt="User profile picture">
                         </div>
 
                         <h3 class="profile-username text-center">{{ $profile->username }}</h3>
@@ -46,9 +46,12 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#editprofile" data-toggle="tab">Edit Profile</a></li>
-                            @if(Auth::user()->verified_status == null)
-                            <li class="nav-item"><a class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}" href="#accountverify" data-toggle="tab">Account Verify</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#editprofile" data-toggle="tab">Edit
+                                    Profile</a></li>
+                            @if (Auth::user()->verified_status == null)
+                                <li class="nav-item"><a
+                                        class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}"
+                                        href="#accountverify" data-toggle="tab">Account Verify</a></li>
                             @endif
                             @if (Auth::user()->pin == null)
                                 <li class="nav-item"><a class="nav-link" href="#pin" data-toggle="tab">Pin</a></li>
@@ -64,13 +67,15 @@
                         <div class="tab-content">
                             <div class="active tab-pane" id="editprofile">
                                 <!-- Post -->
-                                <form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="{{ route('profile.update') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="inputName"
-                                                value="{{ $profile->username }}" name="user_name" placeholder="Name">
+                                                value="{{ $profile->username }}" name="user_name" placeholder="Name"
+                                                readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -292,4 +297,38 @@
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
+@endsection
+@section('script')
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                $(document).ready(function() {
+                    toastr.error("{{ $error }}");
+                });
+            </script>
+        @endforeach
+    @endif
+    {{-- @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                toastr.error("Validation errors occurred. Please check the form.");
+            });
+        </script>
+    @endif --}}
+
+    @if (session()->has('err'))
+        <script>
+            $(document).ready(function() {
+                toastr.error("{{ session('err') }}");
+            });
+        </script>
+    @endif
+
+    @if (session()->has('succ'))
+        <script>
+            $(document).ready(function() {
+                toastr.success("{{ session('succ') }}");
+            });
+        </script>
+    @endif
 @endsection
