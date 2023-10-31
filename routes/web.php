@@ -124,6 +124,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // withdraw route start
     Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw');
+    Route::post('/user/withdraw/request', [UserWithdrawController::class, 'user_withdraw_request'])->name('user.withdraw.request');
     // withdraw route end
 
     // package route start
