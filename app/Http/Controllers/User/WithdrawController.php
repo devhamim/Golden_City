@@ -12,7 +12,9 @@ class WithdrawController extends Controller
 {
     function user_withdraw()
     {
-        return view('user.withdraw.withdraw');
+        return view('user.withdraw.withdraw', [
+            'balance'  => Calculate::Balance(),
+        ]);
     }
 
     function transfer_request(Request $request)
@@ -51,5 +53,15 @@ class WithdrawController extends Controller
         } else {
             return back()->with('err', 'Try again! No receiver found');
         }
+    }
+
+    function user_withdraw_request(Request $request)
+    {
+        $request->validate([
+            'balance'       => 'required',
+            'wallet_type'   => 'required',
+            'wallet'        => 'required',
+            'pin'           => 'required',
+        ]);
     }
 }

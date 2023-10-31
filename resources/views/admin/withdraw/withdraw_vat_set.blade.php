@@ -17,7 +17,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Transection fee (%) <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" id="exampleInputPassword1" value="10">
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            value="10">
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -28,6 +29,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
