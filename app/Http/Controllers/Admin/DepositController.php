@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DepositReject;
+use App\Mail\InvoiceMail;
 use Illuminate\Http\Request;
 use App\Models\DepositRequest;
+use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class DepositController extends Controller
 {
@@ -27,6 +31,7 @@ class DepositController extends Controller
         return view('admin.deposit.deposite_request', [
             'requests' => $request,
         ]);
+       
     }
     function deposite_reject()
     {
@@ -39,6 +44,9 @@ class DepositController extends Controller
 
     function deposite_request_status(Request $request)
     {
+        $user = User::where('id', $request->user_id)->first();
+        $email = $user->email;
+       
         //dd($request->all());
         if ($request->status == 'confirm') {
             $request->validate([
@@ -52,7 +60,7 @@ class DepositController extends Controller
             DepositRequest::find($request->id)->update([
                 'status' => 'confirm',
             ]);
-
+            
             $wallet = new Wallet();
             $wallet->sender_id = null;
             $wallet->receiver_id = $request->user_id;
@@ -61,9 +69,12 @@ class DepositController extends Controller
             $wallet->status = 'confirm';
             $wallet->balance = $request->amount;
             $wallet->save();
-
+            if ($request->status == 'confirm') {
+                Mail::to($email)->send(new InvoiceMail($request->status));
+            }
             return back()->with(['succ' => 'Deposit completed']);
-        } elseif ($request->status == 'cancel') {
+        } 
+        elseif ($request->status == 'cancel') {
             $request->validate([
                 'id'        => 'required|integer',
                 'status'    => 'required',
@@ -74,6 +85,11 @@ class DepositController extends Controller
                 'status'    => 'cancel',
                 'comment'   => $request->comment,
             ]);
+            if ($request->status == 'cancel') {
+                $comment = $request->comment;
+                $user_id = $request->user_id;
+                Mail::to($email)->send(new InvoiceMail($comment));
+            }
             return back()->with(['succ' => 'Deposit cancel']);
         }
     }

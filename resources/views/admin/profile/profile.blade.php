@@ -308,14 +308,6 @@
             </script>
         @endforeach
     @endif
-    {{-- @if ($errors->any())
-        <script>
-            $(document).ready(function() {
-                toastr.error("Validation errors occurred. Please check the form.");
-            });
-        </script>
-    @endif --}}
-
     @if (session()->has('err'))
         <script>
             $(document).ready(function() {

@@ -66,20 +66,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
         Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
 
-        // Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
-        // Route::get('/reference/bonus/set', [SetController::class, 'reference_bonus_set'])->name('reference.bonus.set');
-        // Route::post('/reference/bonus/set/update', [SetController::class, 'reference_bonus_set_update'])->name('reference.bonus.set.update');
 
         Route::get('/transfer/vat/set', [SetController::class, 'transfer_vat_set'])->name('transfer.vat.set');
 
         Route::get('/withdraw/vat/set', [SetController::class, 'withdraw_vat_set'])->name('withdraw.vat.set');
-
-        // Route::get('/matching/bonus/set', [SetController::class, 'matching_bonus_set'])->name('matching.bonus.set');
-        // Route::post('/matching/bonus/set/update', [SetController::class, 'matching_bonus_set_update'])->name('matching.bonus.set.update');
-
-        // Route::get('/generation/set', [SetController::class, 'generation_set'])->name('generation.set');
-        // Route::post('/generation/set/update', [SetController::class, 'generation_set_update'])->name('generation.set.update');
-        // set route end
 
 
         // bonus set
