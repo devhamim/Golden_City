@@ -102,11 +102,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/password/change', [SettingController::class, 'password_change'])->name('password.change');
         // settings route end
 
-       Route::get('nid/request', [NidCOntroller::class, 'nid_request'])->name('nid.request');
-       Route::post('/nid/request/status', [NidCOntroller::class, 'nid_request_status'])->name('nid.request.status');
-       Route::get('/nid/verified', [NidCOntroller::class, 'nid_verified'])->name('nid.verified');
-       Route::get('/nid/rejected', [NidCOntroller::class, 'nid_rejected'])->name('nid.rejected');
-
+        Route::get('nid/request', [NidCOntroller::class, 'nid_request'])->name('nid.request');
+        Route::post('/nid/request/status', [NidCOntroller::class, 'nid_request_status'])->name('nid.request.status');
+        Route::get('/nid/verified', [NidCOntroller::class, 'nid_verified'])->name('nid.verified');
+        Route::get('/nid/rejected', [NidCOntroller::class, 'nid_rejected'])->name('nid.rejected');
     });
 
 
@@ -115,7 +114,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
     // user all route *****
 
-    Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
+    // Route::get('/user/dashboard', [UserHomeController::class, 'user_dashboard'])->name('user.dashboard');
     Route::post('/user/transfer/request', [UserWithdrawController::class, 'transfer_request'])->name('user.transfer.request');
 
     // deposit route start
@@ -152,9 +151,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // profile route end
 
 });
-
-// package route end
-
 
 //Registation
 Route::post('/user/stores', [RegisterController::class, 'store']);

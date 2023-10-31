@@ -48,7 +48,7 @@
         }
 
         /*We need to remove left-right connectors from elements without
-                                                            any siblings*/
+                                                                                                                                                        any siblings*/
         .tree li:only-child::after,
         .tree li:only-child::before {
             display: none;
@@ -60,7 +60,7 @@
         }
 
         /*Remove left connector from first child and
-                                                            right connector from last child*/
+                                                                                                                                                        right connector from last child*/
         .tree li:first-child::before,
         .tree li:last-child::after {
             border: 0 none;
@@ -134,20 +134,46 @@
                 <div class="tree">
                     <ul>
                         <li>
-                            <a href="#">{{ $user->username }}</a>
+                            <a href="#">
+                                @if ($user->profile == null)
+                                    {{ $user->username }}
+                                @else
+                                    <img src="{{ asset('files/profile/' . $user->profile) }}"
+                                        style="width: 3rem;border: 1px solid #00a0b6;border-radius: 50%;"
+                                        alt="{{ $user->username }}">
+                                    ss
+                                @endif
+                            </a>
                             @if ($user->leftChild || $user->rightChild)
                                 <ul>
                                     @if ($user->leftChild)
                                         <li>
-                                            <a href="#">{{ $user->leftChild->username }}</a>
+                                            <a href="#">
+                                                @if ($user->leftChild->profile == null)
+                                                    {{ $user->username }}
+                                                @else
+                                                    <img src="{{ asset('files/profile/' . $user->leftChild->profile) }}"
+                                                        style="width: 3rem;border: 1px solid #00a0b6;border-radius: 50%;"
+                                                        alt="{{ $user->leftChild->profile }}">
+                                                @endif
+                                            </a>
                                             @if ($user->leftChild->leftChild || $user->leftChild->rightChild)
                                                 <ul>
                                                     @if ($user->leftChild->leftChild)
                                                         <li>
                                                             <a href="#">
+                                                                @if ($user->leftChild->leftChild->profile == null)
+                                                                    {{ $user->leftChild->leftChild->username }}
+                                                                @else
+                                                                    <img src="{{ asset('files/profile/' . $user->leftChild->leftChild->profile) }}"
+                                                                        style="width: 3rem;border: 1px solid #00a0b6;border-radius: 50%;"
+                                                                        alt="{{ $user->leftChild->leftChild->username }}">
+                                                                @endif
+                                                            </a>
+                                                            {{-- <a href="#">
                                                                 <div class="x">
                                                                     {{ $user->leftChild->leftChild->username }}</div>
-                                                            </a>
+                                                            </a> --}}
                                                         </li>
                                                     @endif
                                                     @if ($user->leftChild->rightChild)
@@ -162,7 +188,16 @@
                                     @endif
                                     @if ($user->rightChild)
                                         <li>
-                                            <a href="#">{{ $user->rightChild->username }}</a>
+                                            {{-- <a href="#">{{ $user->rightChild->username }}</a> --}}
+                                            <a href="#">
+                                                @if ($user->rightChild->profile == null)
+                                                    {{ $user->rightChild->username }}
+                                                @else
+                                                    <img src="{{ asset('files/profile/' . $user->rightChild->profile) }}"
+                                                        style="width: 3rem;border: 1px solid #00a0b6;border-radius: 50%;"
+                                                        alt="{{ $user->rightChild->username }}">
+                                                @endif
+                                            </a>
                                             @if ($user->rightChild->leftChild || $user->rightChild->rightChild)
                                                 <ul>
                                                     @if ($user->rightChild->leftChild)

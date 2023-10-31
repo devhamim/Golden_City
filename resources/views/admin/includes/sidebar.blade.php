@@ -377,7 +377,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('user.dashboard') }}" class="nav-link">
+                        <a href="{{ url('/') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
                                 Dashboard
@@ -493,7 +493,8 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('profile') }}" class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
+                                <a href="{{ route('profile') }}"
+                                    class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Profile</p>
                                 </a>

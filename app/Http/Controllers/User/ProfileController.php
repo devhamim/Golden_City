@@ -36,8 +36,8 @@ class ProfileController extends Controller
             } else {
                 return redirect()->back()->with(['err' => 'Invalid Password']);
             }
-        }
-        else{
+            return redirect()->back()->with(['err' => 'Type your Password to change profile']);
+        } else {
             if (Hash::check($password, Auth::user()->password)) {
                 User::where('id', Auth::user()->id)->update([
                     'username' => $request->user_name,
@@ -46,7 +46,6 @@ class ProfileController extends Controller
                 return redirect()->back()->with(['succ' => 'Profile Update Successfully']);
             }
         }
-        
     }
     function set_pin(Request $request)
     {
