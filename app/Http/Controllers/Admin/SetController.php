@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 class SetController extends Controller
 {
 
+    
     function bonus_set()
     {
-        return view('admin.bonus_set.bonusset');
+        $requests = BonusSets::all();
+        return view('admin.bonus_set.bonusset', compact('requests'));
     }
 
 
@@ -30,7 +32,8 @@ class SetController extends Controller
         $total_wallet = $request->c_wallet + $request->r_wallet + $request->s_wallet; //Count total
 
         if ($total_wallet > 101) { //checking limit
-            return 'Max wallet value is 100%';
+            // return 'Max wallet value is 100%';
+            return back()->with(['err' => 'Max wallet value is 100%']);
         } else {
             $validated = $request->validate([
                 'bonus_type'    => 'required',
@@ -51,6 +54,28 @@ class SetController extends Controller
             $bonus->r_wallet    = $request->r_wallet;
             $bonus->s_wallet    = $request->s_wallet;
             $bonus->save();
+            return back()->with(['succ' => 'Bonus sets added']);
+        }
+    }
+    
+    function set_update(Request $request){
+        $total_wallet = $request->c_wallet + $request->r_wallet + $request->s_wallet;
+        if ($total_wallet > 101) { //checking limit
+            return back()->with(['err' => 'Max wallet value is 100%']);
+        } else {
+            $validated = $request->validate([
+                'bonus'         => 'required|max:99|numeric',
+                'c_wallet'      => 'numeric',
+                'r_wallet'      => 'numeric',
+                's_wallet'      => 'numeric',
+            ]);
+
+            BonusSets::find($request->id)->update([
+                'bonus'       => $request->bonus,
+                'c_wallet'    => $request->c_wallet,
+                'r_wallet'    => $request->r_wallet,
+                's_wallet'    => $request->s_wallet,
+            ]);
             return back()->with(['succ' => 'Bonus sets added']);
         }
     }

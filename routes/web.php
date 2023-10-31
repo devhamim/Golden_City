@@ -65,6 +65,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // set route start
         Route::get('/daily/bonus/set', [SetController::class, 'daily_bonus_set'])->name('daily.bonus.set');
         Route::post('/daily/bonus/set/update', [SetController::class, 'daily_bonus_set_update'])->name('daily.bonus.set.update');
+        Route::post('/set/update', [SetController::class, 'set_update'])->name('set.update');
+        
 
 
         Route::get('/transfer/vat/set', [SetController::class, 'transfer_vat_set'])->name('transfer.vat.set');
