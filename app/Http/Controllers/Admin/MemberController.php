@@ -21,10 +21,10 @@ class MemberController extends Controller
     {
         return view('admin.member.banned_member');
     }
-    function member_account_verified()
-    {
-        return view('admin.member.member_account_verified');
-    }
+    // function member_account_verified()
+    // {
+    //     return view('admin.member.member_account_verified');
+    // }
     function member_bonus()
     {
         return view('admin.member.member_bonus');

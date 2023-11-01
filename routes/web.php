@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/member/package/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
         Route::post('/member/package/store', [MemberController::class, 'member_packge_store'])->name('member.packge.store');
         Route::get('/banned/member', [MemberController::class, 'banned_member'])->name('banned.member');
-        Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
+        // Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
         Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('member.bonus');
 
         // deposit route start
@@ -85,6 +85,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/nid/request/status', [NidCOntroller::class, 'nid_request_status'])->name('nid.request.status');
         Route::get('/nid/verified', [NidCOntroller::class, 'nid_verified'])->name('nid.verified');
         Route::get('/nid/rejected', [NidCOntroller::class, 'nid_rejected'])->name('nid.rejected');
+        Route::get('/verified/member/profile/{id}', [NidCOntroller::class, 'verified_member_profile'])->name('verified.member.profile');
+        Route::post('user/profile/status/update', [NidCOntroller::class, 'user_profile_status_update'])->name('user.profile.status.update');
+        Route::post('user/profile/banned/status', [NidCOntroller::class, 'user_profile_banned_status'])->name('user.profile.banned.status');
+        Route::post('user/profile/withdraw/status', [NidCOntroller::class, 'user_profile_withdraw_status'])->name('user.profile.withdraw.status');
     });
 
     // tree

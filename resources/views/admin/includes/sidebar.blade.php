@@ -72,6 +72,30 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a href="{{ route('nid.request') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Member Request</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('nid.verified') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Verified Member</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('nid.rejected') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rejected Member</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
                                 <a href="{{ route('add.member') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add Member</p>
@@ -87,12 +111,6 @@
                                 <a href="{{ route('banned.member') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Banned Member</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('member.account.verified') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Member Verified</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -292,39 +310,6 @@
                                 <a href="{{ route('tree.hide.show') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Tree Hide/Show</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-table"></i>
-                            <p>
-                                NID Verified
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('nid.request') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>User Request</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('nid.verified') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Verified User</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('nid.rejected') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Rejected User</p>
                                 </a>
                             </li>
                         </ul>
