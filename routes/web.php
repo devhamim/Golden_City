@@ -99,6 +99,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/nid/verified', [NidCOntroller::class, 'nid_verified'])->name('nid.verified');
         Route::get('/nid/rejected', [NidCOntroller::class, 'nid_rejected'])->name('nid.rejected');
         Route::get('/verified/member/profile/{id}', [NidCOntroller::class, 'verified_member_profile'])->name('verified.member.profile');
+        Route::post('user/profile/status/update', [NidCOntroller::class, 'user_profile_status_update'])->name('user.profile.status.update');
+        Route::post('user/profile/banned/status', [NidCOntroller::class, 'user_profile_banned_status'])->name('user.profile.banned.status');
+        Route::post('user/profile/withdraw/status', [NidCOntroller::class, 'user_profile_withdraw_status'])->name('user.profile.withdraw.status');
+        
     });
 
 
