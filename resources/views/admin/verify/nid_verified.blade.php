@@ -43,7 +43,7 @@
                             @if (session()->has('succ'))
                                 {{ session('succ') }}
                             @else
-                                Verified User
+                                Verified Member
                             @endif
                         </h3>
                     </div>
@@ -64,7 +64,9 @@
                                     <tr>
                                         <td class="d-none">{{ $request->id }}</td>
                                         <td class="d-none">{{ $request->user_id }}</td>
-                                        <td>{{ $request->created_at }}</td>
+                                        <td>
+                                            <a href="{{ route('verified.member.profile', $request->user_id) }}">{{ $request->user->username }}</a>
+                                        </td>
                                         <td style="width: 70px;">
                                             <a href="{{ asset('files/nid/'. $request->id_card) }}" data-toggle="lightbox" data-title="{{ $request->user->username }}" data-gallery="gallery">
                                                 <img src="{{ asset('files/nid/'. $request->id_card) }}" class="img-fluid mb-2" alt="black sample"/>

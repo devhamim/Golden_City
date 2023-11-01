@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/member/package/list', [MemberController::class, 'member_packge_list'])->name('member.packge.list');
         Route::post('/member/package/store', [MemberController::class, 'member_packge_store'])->name('member.packge.store');
         Route::get('/banned/member', [MemberController::class, 'banned_member'])->name('banned.member');
-        Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
+        // Route::get('/member/account/verified', [MemberController::class, 'member_account_verified'])->name('member.account.verified');
         Route::get('/member/bonus', [MemberController::class, 'member_bonus'])->name('member.bonus');
         // member route end
 
@@ -98,6 +98,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/nid/request/status', [NidCOntroller::class, 'nid_request_status'])->name('nid.request.status');
         Route::get('/nid/verified', [NidCOntroller::class, 'nid_verified'])->name('nid.verified');
         Route::get('/nid/rejected', [NidCOntroller::class, 'nid_rejected'])->name('nid.rejected');
+        Route::get('/verified/member/profile/{id}', [NidCOntroller::class, 'verified_member_profile'])->name('verified.member.profile');
     });
 
 
@@ -141,7 +142,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/set/pin', [ProfileController::class, 'set_pin'])->name('set.pin');
     Route::post('/pin/update', [ProfileController::class, 'pin_update'])->name('pin.update');
     Route::post('/change/password', [ProfileController::class, 'change_password'])->name('change.password');
+
     // profile route end
+
+    
 
 });
 
