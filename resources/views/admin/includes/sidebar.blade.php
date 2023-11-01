@@ -363,7 +363,7 @@
                 @else
                     <li class="nav-item">
                         <a href="{{ url('/') }}" class="nav-link">
-                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <i class="nav-icon fa fa-bar-chart"></i>
                             <p>
                                 Dashboard
                                 <span class="badge badge-info right">User</span>
@@ -373,7 +373,7 @@
                     @if (Auth::user()->verified_status != null)
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
+                                <i class="nav-icon fa fa-plus"></i>
                                 <p>
                                     Deposit
                                     <i class="fas fa-angle-left right"></i>
@@ -390,7 +390,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
+                                <i class="nav-icon fa fa-paper-plane"></i>
                                 <p>
                                     Withdraw
                                     <i class="fas fa-angle-left right"></i>
@@ -405,9 +405,71 @@
                                 </li>
                             </ul>
                         </li>
+
+                        {{-- Transfer --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-plus-square"></i>
+                                <i class="nav-icon fa fa-exchange"></i>
+                                <p>
+                                    Transfer
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('user.transfer.list') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Transfer</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-gift"></i>
+                                <p>
+                                    All Bonus History
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('user.daily.bonus') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Daily</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('user.refferal.bonus') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>refferal</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('user.generation.bonus') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>generation</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('user.matching.bonus') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>matching</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-archive"></i>
                                 <p>
                                     Package
                                     <i class="fas fa-angle-left right"></i>
@@ -430,7 +492,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-plus-square"></i>
+                                <i class="nav-icon fa fa-usd"></i>
                                 <p>
                                     Balance
                                     <i class="fas fa-angle-left right"></i>
@@ -448,7 +510,7 @@
                         @if ($status->status == 'Show')
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-plus-square"></i>
+                                    <i class="nav-icon fa fa-users"></i>
                                     <p>
                                         Tree
                                         <i class="fas fa-angle-left right"></i>

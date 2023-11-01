@@ -28,6 +28,8 @@ return new class extends Migration
             $table->integer('verified_status')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', ['admin', 'user']);
+            $table->integer('banned')->default(0);
+            $table->integer('withdraw')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
