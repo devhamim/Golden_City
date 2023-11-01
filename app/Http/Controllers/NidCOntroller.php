@@ -56,4 +56,22 @@ class NidCOntroller extends Controller
             'packages'       => $activePackage,
         ]);
     }
+    function user_profile_status_update(Request $request){
+       User::where('id', $request->id)->update([
+        'verified_status' =>$request->status,
+       ]);
+       return back();
+    }
+    function user_profile_banned_status(Request $request){
+        User::where('id', $request->id)->update([
+            'banned' =>$request->status,
+           ]);
+           return back();
+    }
+    function user_profile_withdraw_status(Request $request){
+        User::where('id', $request->id)->update([
+            'withdraw' =>$request->status,
+           ]);
+           return back();
+    }
 }
