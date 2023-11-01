@@ -8,12 +8,8 @@
             <div class="col-12">
                 <!-- /.card -->
                 <div class="card">
-                    <div class="card-header bg-primary text-center mx-auto">
-                        <h3 class="card-title">Active Package List</h3>
-                    </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example2" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Package Name </th>

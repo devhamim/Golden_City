@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Wallet;
+use Balance;
 use Calculate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WithdrawController extends Controller
 {
@@ -53,6 +55,18 @@ class WithdrawController extends Controller
         } else {
             return back()->with('err', 'Try again! No receiver found');
         }
+    }
+
+    function transfer_list()
+    {
+        $send = Wallet::where('sender_id', Auth::user()->id)->where('transaction_type', 'transfer')->get(); //Total Transfer
+
+        $receive = Wallet::where('receiver_id', Auth::user()->id)->where('transaction_type', 'transfer')->paginate(10); // Total Receive
+
+        return view('user.transfer.transfer', [
+            'transfers' => $send,
+            'receives'  => $receive,
+        ]);
     }
 
     function user_withdraw_request(Request $request)
