@@ -89,6 +89,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('user/profile/status/update', [NidCOntroller::class, 'user_profile_status_update'])->name('user.profile.status.update');
         Route::post('user/profile/banned/status', [NidCOntroller::class, 'user_profile_banned_status'])->name('user.profile.banned.status');
         Route::post('user/profile/withdraw/status', [NidCOntroller::class, 'user_profile_withdraw_status'])->name('user.profile.withdraw.status');
+
+
+        // all users withdraw stop
+        Route::post('/all/withdraw/status', [WithdrawController::class, 'all_withdraw_status'])->name('all.withdraw.status');
     });
 
     // tree

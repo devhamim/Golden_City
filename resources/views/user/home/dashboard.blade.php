@@ -221,7 +221,7 @@
                 <!-- PRODUCT LIST -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Recently Added Products</h3>
+                        <h3 class="card-title">rrrrrRecently Added Products</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -243,7 +243,7 @@
                                     <a href="javascript:void(0)" class="product-title">Samsung TV
                                         <span class="badge badge-warning float-right">$1800</span></a>
                                     <span class="product-description">
-                                        Samsung 32" 1080p 60Hz LED Smart HDTV.
+                                        Samsung 32" 11111080p 60Hz LED Smart HDTV.
                                     </span>
                                 </div>
                             </li>
