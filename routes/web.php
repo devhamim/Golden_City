@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TreeController;
 use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\NidCOntroller;
+use App\Http\Controllers\PaymentGatewayController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
@@ -42,6 +43,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/deposite/request', [DepositController::class, 'deposite_request'])->name('deposite.request');
         Route::post('/deposite/request/status', [DepositController::class, 'deposite_request_status'])->name('deposite.request.status');
         Route::get('/deposite/reject', [DepositController::class, 'deposite_reject'])->name('deposite.reject');
+
+        //  Payment Gateway route start
+        Route::get('/admin/payment/gateway', [PaymentGatewayController::class, 'admin_payment_gateway'])->name('admin.payment.gateway');
+        Route::post('/admin/payment/gateway/add', [PaymentGatewayController::class, 'admin_payment_gateway_add'])->name('admin.payment.gateway.add');
+        Route::get('/payment/gateway/edit/{id}', [PaymentGatewayController::class, 'payment_gateway_edit'])->name('payment.gateway.edit');
+        Route::post('/payment/gateway/upddate', [PaymentGatewayController::class, 'payment_gateway_upddate'])->name('payment.gateway.upddate');
+        //  Payment Gateway route end
 
         // withdraw route start
         Route::get('/admin/withdraw', [WithdrawController::class, 'admin_withdraw'])->name('admin.withdraw');

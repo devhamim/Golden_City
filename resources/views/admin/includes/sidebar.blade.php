@@ -155,6 +155,15 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('admin.payment.gateway') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tree"></i>
+                            <p>
+                                Payment Gateway
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-paper-plane"></i>
                             <p>
