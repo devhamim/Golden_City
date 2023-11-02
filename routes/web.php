@@ -13,7 +13,6 @@ use App\Http\Controllers\NidCOntroller;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\DepositController as UserDepositController;
-use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\PackageController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
@@ -117,7 +116,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/package/purchase/{id}', [PackageController::class, 'user_package_purchase'])->name('user.package.purchase');
 
     //tree
-    Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
+    // Route::get('user/tree/access', [AccessController::class, 'user_tree_access'])->name('user.tree.access');
 
     // account route start
     Route::get('/account/verified', [AccountController::class, 'account_verified'])->name('account.verified');

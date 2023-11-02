@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserVerified extends Model
 {
     use HasFactory;
-    function user(){
+
+    function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 }
