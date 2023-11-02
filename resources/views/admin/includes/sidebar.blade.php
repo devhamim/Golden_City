@@ -2,14 +2,8 @@
     use App\Models\Tree;
     use App\Models\StopAllWithdraw;
     $status = Tree::first();
-    $all_withdraw = StopAllWithdraw::first();
-    $all_withdraw_status = StopAllWithdraw::all()->count();
-
-    if ($all_withdraw_status) {
-        $all_withdraw = true;
-    } else {
-        $all_withdraw = false;
-    }
+    $all_withdraw_status = StopAllWithdraw::first();
+    $count = StopAllWithdraw::count();
 
 @endphp
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -244,7 +238,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-table"></i>
+                            <i class="nav-icon fa fa-list"></i>
                             <p>
                                 All Set List
                                 <i class="fas fa-angle-left right"></i>
@@ -308,7 +302,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-table"></i>
+                            <i class="nav-icon fa fa-users"></i>
                             <p>
                                 Tree
                                 <i class="fas fa-angle-left right"></i>
@@ -325,7 +319,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-table"></i>
+                            <i class="nav-icon fa fa-universal-access"></i>
                             <p>
                                 Access
                                 <i class="fas fa-angle-left right"></i>
@@ -348,7 +342,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-table"></i>
+                            <i class="nav-icon fa fa-cog"></i>
                             <p>
                                 Settings
                                 <i class="fas fa-angle-left right"></i>
@@ -380,7 +374,6 @@
                         </a>
                     </li>
                     @if (Auth::user()->verified_status != null && Auth::user()->banned != null && Auth::user()->withdraw == 1)
-
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa fa-plus"></i>
@@ -398,8 +391,37 @@
                                 </li>
                             </ul>
                         </li>
-                        @if ($all_withdraw_status != 0)
-                            @if ($all_withdraw->status != 'cancel')
+                        @if($count != 0)
+                        @if($all_withdraw_status->status == 'confirm')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-paper-plane"></i>
+                                    <p>
+                                        Withdraw
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('user.withdraw') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Withdraw</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
+                        @endif
+                        @if ($count == 0 )
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-paper-plane"></i>
+                                <p>
+                                    Withdraw
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fa fa-paper-plane"></i>
@@ -417,9 +439,11 @@
                                         </li>
                                     </ul>
                                 </li>
-                            @endif
+                            </ul>
+                        </li>
+                        @else
+                            
                         @endif
-
                         {{-- Transfer --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -543,7 +567,7 @@
                     @endif
                     <li class="nav-item">
                         <a href="#"
-                            class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }} {{ Auth::user()->banned == 0 ? 'bg-danger' : '' }} {{ Auth::user()->withdraw != 1 ? 'bg-danger' : '' }} {{ $all_withdraw_status->status != 'confirm' ? 'bg-danger' : '' }}">
+                            class="nav-link {{ Auth::user()->verified_status == 0 ? 'bg-danger' : '' }} {{ Auth::user()->banned == 0 ? 'bg-danger' : '' }} {{ Auth::user()->withdraw != 1 ? 'bg-danger' : '' }} ">
                             <i class="nav-icon far fa-plus-square"></i>
                             <p>
                                 Account

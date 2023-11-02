@@ -41,8 +41,8 @@
 
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-            {{-- <a class="nav-link" style="color: #000000e8;font-weight: bold">
-                @if (Auth::user()->withdraw == 1 && $all_withdraw_status->status == 'confirm')
+            <a class="nav-link" style="color: #000000e8;font-weight: bold">
+                @if(Auth::user()->withdraw == 1 )
                 ${{ number_format($totalBalance, 1) }}
                 @else
                     <span class="text-danger">Banned</span>
