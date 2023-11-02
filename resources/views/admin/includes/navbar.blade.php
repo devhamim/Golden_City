@@ -19,7 +19,6 @@
 
     $totalBalance = $credit + $refferal + $shopping;
 
-
     use App\Models\StopAllWithdraw;
     $all_withdraw_status = StopAllWithdraw::first();
 @endphp
@@ -48,7 +47,7 @@
                 @else
                     <span class="text-danger">Banned</span>
                 @endif
-            </a>
+            </a> --}}
 
         </li>
         <!-- Notifications Dropdown Menu -->
