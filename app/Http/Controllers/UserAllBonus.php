@@ -9,22 +9,30 @@ class UserAllBonus extends Controller
 {
     function daily()
     {
-        $data = BonusHistory::with('package')->where("user_id", Auth::user()->id)->where('bonus_type', 'daily')->get();
-        // dd($data->package);
+        $data = BonusHistory::where("user_id", Auth::user()->id)->where('bonus_type', 'daily')->get();
         return view('user.allbonus.daily', [
             'dailys' => $data
         ]);
     }
     function refferal()
     {
-        return view('user.allbonus.refferal');
+        $data = BonusHistory::where("user_id", Auth::user()->id)->where('bonus_type', 'refferal')->get();
+        return view('user.allbonus.refferal', [
+            'refferals' => $data
+        ]);
     }
     function generation()
     {
-        return view('user.allbonus.generation');
+        $data = BonusHistory::where("user_id", Auth::user()->id)->where('bonus_type', 'generation')->get();
+        return view('user.allbonus.generation', [
+            'generations' => $data
+        ]);
     }
     function matching()
     {
-        return view('user.allbonus.matching');
+        $data = BonusHistory::where("user_id", Auth::user()->id)->where('bonus_type', 'matching')->get();
+        return view('user.allbonus.matching', [
+            'matchings' => $data
+        ]);
     }
 }

@@ -13,4 +13,9 @@ class BonusHistory extends Model
     {
         return $this->belongsTo(Package::class, 'package_id');
     }
+
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
 }

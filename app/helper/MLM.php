@@ -51,7 +51,7 @@ class MLM
             $refferal = BonusSets::where('bonus_type', $bonus_type)->first();
             $amount = $package->price * $refferal->bonus / 100;
 
-            self::MakeBonusHistory($bonus_type, $package->user_id, null, $package->id, null, $amount);
+            self::MakeBonusHistory($bonus_type, $package->user_id, null, $package->package_id, null, $amount);
 
             $walletTypes = ['c_wallet', 'r_wallet', 's_wallet'];
 

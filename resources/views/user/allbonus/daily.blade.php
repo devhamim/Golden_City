@@ -3,7 +3,12 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                <div class="row">
+                    <div class="col-8 text-left text-bold">Daily Income</div>
+                    <div class="col-4 text-right text-bold text-success">$
+                        {{ number_format(Balance::TotalDailyIncome(Auth::user()->id), 1) }}
+                    </div>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -20,8 +25,9 @@
                         @foreach ($dailys as $daily)
                             <tr>
                                 <td>{{ $daily->created_at->format('l') }} /
-                                    <span>{{ $daily->created_at->format('h:i A') }}</span></td>
-                                <td>{{ $daily->package }}</td>
+                                    <span>{{ $daily->created_at->format('h:i A') }}</span>
+                                </td>
+                                <td>{{ $daily->package->name }}</td>
                                 <td class="text-success text-bold">${{ $daily->amount }}</td>
                                 <td>{{ $daily->created_at->format('d M Y') }}</td>
                             </tr>
