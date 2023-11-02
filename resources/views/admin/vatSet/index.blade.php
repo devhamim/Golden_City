@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-6 justify-content-center">
+            <div class="col-md-6 m-auto justify-content-center">
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
@@ -20,13 +20,24 @@
                                         <label>Vate Set <span class="text-danger">*</span></label>
                                         <select name="vate_set" id="" class="form-control @error('vate_set') is-invalid @enderror">
                                             <option value="">Select</option>
+                                            @if($vatesets->isEmpty())
                                             <option value="wridro">Wridro</option>
                                             <option value="transfer">Transfer</option>
+                                        @else
+                                            <option value="wridro" {{ $vatesets[0]->vate_set == 'wridro' ? 'selected' : '' }}>Wridro</option>
+                                            <option value="transfer" {{ $vatesets[0]->vate_set == 'transfer' ? 'selected' : '' }}>Transfer</option>
+                                        @endif
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Fee <span class="text-danger">*</span></label>
-                                        <input type="text" name="fee" class="form-control @error('fee') is-invalid @enderror" >
+                                        @if($vatesets->isEmpty())
+                                            <input type="text" name="fee" class="form-control @error('fee') is-invalid @enderror">
+                                        @else
+                                            @foreach ($vatesets as $vateset)
+                                                <input type="text" name="fee" class="form-control @error('fee') is-invalid @enderror" value="{{ $vateset->fee }}">
+                                            @endforeach
+                                        @endif
                                     </div>
 
                                     <div class="col-md-12">
@@ -41,41 +52,6 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-6 justify-content-center">
-                <!-- general form elements -->
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Table</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Name</th>
-                                <th>Ac Number</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            @foreach ($paymentGatweays as $payment)
-                            <tr>
-                                <td>{{ $payment->name }}</td>
-                                <td>{{ $payment->ac_number }}</td>
-                                <td>
-                                    @if($payment->status == 1)
-                                        Show
-                                    @else
-                                        Hidden
-                                    @endif
-                                </td>
-                                <td><a class="badge badge-info" href="{{ route('payment.gateway.edit', $payment->id) }}">Edit</a></td>
-                            </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 @endsection

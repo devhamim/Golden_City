@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class VateSet extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'vate_set',
+        'fee',
+    ];
 }

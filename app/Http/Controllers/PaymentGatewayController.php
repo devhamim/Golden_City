@@ -69,11 +69,5 @@ class PaymentGatewayController extends Controller
         return redirect()->route('admin.payment.gateway')->with(['succ', 'Payment Gateway Update']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
 }

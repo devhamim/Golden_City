@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VateSet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VateSetController extends Controller
@@ -11,7 +13,10 @@ class VateSetController extends Controller
      */
     public function admin_vate_set()
     {
-        return view('admin.vatSet.index');
+        $vatesets = VateSet::all();
+        return view('admin.vatSet.index', [
+            'vatesets'=>$vatesets,
+        ]);
     }
 
     /**
@@ -27,7 +32,32 @@ class VateSetController extends Controller
      */
     public function admin_vate_set_add(Request $request)
     {
-        //
+
+        $vateSet = VateSet::first();
+
+        if ($vateSet === null) {
+            $request->validate([
+                'vate_set' => 'required',
+                'fee' => 'required',
+            ]);
+
+            VateSet::create([
+                'vate_set' => $request->vate_set,
+                'fee' => $request->fee,
+                'created_at' => now(),
+            ]);
+
+            return back()->with('success', 'Vate Set Added');
+        }
+        else {
+            $vateSet->update([
+                'vate_set' => $request->vate_set,
+                'fee' => $request->fee,
+            ]);
+
+            return back()->with('success', 'Vate Set Updated');
+        }
+
     }
 
     /**

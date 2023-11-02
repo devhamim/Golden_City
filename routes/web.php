@@ -45,13 +45,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/deposite/request/status', [DepositController::class, 'deposite_request_status'])->name('deposite.request.status');
         Route::get('/deposite/reject', [DepositController::class, 'deposite_reject'])->name('deposite.reject');
 
-        //  Payment Gateway route start
-        Route::get('/admin/payment/gateway', [PaymentGatewayController::class, 'admin_payment_gateway'])->name('admin.payment.gateway');
-        Route::post('/admin/payment/gateway/add', [PaymentGatewayController::class, 'admin_payment_gateway_add'])->name('admin.payment.gateway.add');
-        Route::get('/payment/gateway/edit/{id}', [PaymentGatewayController::class, 'payment_gateway_edit'])->name('payment.gateway.edit');
-        Route::post('/payment/gateway/upddate', [PaymentGatewayController::class, 'payment_gateway_upddate'])->name('payment.gateway.upddate');
-        //  Payment Gateway route end
-
         // withdraw route start
         Route::get('/admin/withdraw', [WithdrawController::class, 'admin_withdraw'])->name('admin.withdraw');
         Route::get('/admin/withdraw/request', [WithdrawController::class, 'admin_withdraw_request'])->name('admin.withdraw.request');
@@ -121,6 +114,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/payment/gateway/edit/{id}', [PaymentGatewayController::class, 'payment_gateway_edit'])->name('payment.gateway.edit');
     Route::post('/payment/gateway/upddate', [PaymentGatewayController::class, 'payment_gateway_upddate'])->name('payment.gateway.upddate');
     //  Payment Gateway route end
+    
     //  Payment Gateway route start
     Route::get('/admin/vate/set', [VateSetController::class, 'admin_vate_set'])->name('admin.vate.set');
     Route::post('/admin/vate/set/add', [VateSetController::class, 'admin_vate_set_add'])->name('admin.vate.set.add');
