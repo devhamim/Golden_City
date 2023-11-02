@@ -11,17 +11,16 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="{{ route('all.withdraw.status') }}" method="POST">
+                        @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Active/De-active <span class="text-danger">*</span></label>
-                                        <select class="form-control" style="width: 100%;">
-                                            <option selected="selected">Select</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
+                                        <select class="form-control" style="width: 100%;" name="status">
+                                            <option selected="selected" value="confirm">Confirm</option>
+                                            <option value="cancel">Cancel</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12">

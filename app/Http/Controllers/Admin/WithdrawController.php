@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StopAllWithdraw;
 use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
@@ -27,5 +28,21 @@ class WithdrawController extends Controller
     }
     function withdraw_vat_set(){
         return view('admin.withdraw.withdraw_vat_set');
+    }
+    function all_withdraw_status(Request $request){
+        $count = StopAllWithdraw::count();
+        if ($count == '0') {
+            StopAllWithdraw::insert([
+                'status' =>$request->status,
+            ]);
+            return back();
+        }
+        else{
+            $count = StopAllWithdraw::first();
+            StopAllWithdraw::where('id', $count->id)->update([
+                'status' =>$request->status,
+            ]);
+            return back();
+        }
     }
 }
