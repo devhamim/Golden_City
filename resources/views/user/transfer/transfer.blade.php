@@ -61,7 +61,7 @@
                     <div class="card-header text-center">
                         <div class="row">
                             <div class="col-8 text-left text-bold">Total Transfer</div>
-                            <div class="col-4 text-right text-bold text-success">$
+                            <div class="col-4 text-right text-bold text-danger">$
                                 {{ number_format(Balance::TransferBalance(Auth::user()->id), 1) }}
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 @foreach ($transfers as $transfer)
                                     <tr>
                                         <td class="name">{{ $transfer->receiver->username }}</td>
-                                        <td class="font-weight-bold price text-success">
+                                        <td class="font-weight-bold price text-danger">
                                             ${{ number_format($transfer->balance) }}</td>
                                         <td>{{ $transfer->wallet_type }}</td>
                                         <td>
