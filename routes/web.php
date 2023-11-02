@@ -18,6 +18,7 @@ use App\Http\Controllers\User\PackageController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\WithdrawController as UserWithdrawController;
 use App\Http\Controllers\UserAllBonus;
+use App\Http\Controllers\VateSetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -113,6 +114,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // deposit route start
     Route::get('/user/deposit', [UserDepositController::class, 'user_deposit'])->name('user.deposit');
     Route::post('/user/deposit/request', [UserDepositController::class, 'deposit_request'])->name('user.deposit.request');
+
+    //  Payment Gateway route start
+    Route::get('/admin/payment/gateway', [PaymentGatewayController::class, 'admin_payment_gateway'])->name('admin.payment.gateway');
+    Route::post('/admin/payment/gateway/add', [PaymentGatewayController::class, 'admin_payment_gateway_add'])->name('admin.payment.gateway.add');
+    Route::get('/payment/gateway/edit/{id}', [PaymentGatewayController::class, 'payment_gateway_edit'])->name('payment.gateway.edit');
+    Route::post('/payment/gateway/upddate', [PaymentGatewayController::class, 'payment_gateway_upddate'])->name('payment.gateway.upddate');
+    //  Payment Gateway route end
+    //  Payment Gateway route start
+    Route::get('/admin/vate/set', [VateSetController::class, 'admin_vate_set'])->name('admin.vate.set');
+    Route::post('/admin/vate/set/add', [VateSetController::class, 'admin_vate_set_add'])->name('admin.vate.set.add');
+
+    //  Payment Gateway route end
 
     // withdraw route start
     Route::get('/user/withdraw', [UserWithdrawController::class, 'user_withdraw'])->name('user.withdraw');

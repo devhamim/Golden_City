@@ -164,6 +164,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
+<<<<<<< Updated upstream
+=======
+                        <a href="{{ route('admin.vate.set') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tree"></i>
+                            <p>
+                                Vate Set
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+>>>>>>> Stashed changes
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-paper-plane"></i>
                             <p>
@@ -451,7 +463,7 @@
                             </ul>
                         </li>
                         @else
-                            
+
                         @endif
                         {{-- Transfer --}}
                         <li class="nav-item">
